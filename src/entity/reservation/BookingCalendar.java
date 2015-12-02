@@ -100,7 +100,9 @@ public class BookingCalendar {
 				}
 				while(currentDay<endDay){
 					if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)<maxCapacities[type]){
-						capacity.get(currentYear).get(currentMonth).get(currentDay).add(value);
+						int temp = capacity.get(currentYear).get(currentMonth).get(currentDay).get(type);
+						capacity.get(currentYear).get(currentMonth).get(currentDay).set(type, temp+value);
+
 					}
 					// Add flag to show high or low season to the String that is added to the ArrayList
 					if ((currentMonth==6 && currentDay>=12) || (currentMonth==8 && currentDay<=16)){
