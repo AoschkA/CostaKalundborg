@@ -30,26 +30,20 @@ public class BookingCalendar {
 
 	public ArrayList<String> getOccupiedDays(String arrivalDate, String departureDate, int type ){
 		ArrayList<String> occupiedDates = new ArrayList<String>();
-		//		String[] firstDateString = arrivalDate.split("-");
-		//		String[] lastDateString = departureDate.split("-");
-		//		int[] dates = new int[6];
-		//
-		//		for(int i=0; i<3; i++){
-		//			dates[i] = Integer.parseInt(firstDateString[i]);
-		//		}
-		//		for(int i=0; i<3; i++){
-		//			dates[i+3] = Integer.parseInt(lastDateString[i]);
-		//		}
-
+		
 		int[] dates = parseDates(arrivalDate, departureDate);
-
+		
 		int startYear=dates[0]-baseYear;
 		int startMonth=dates[1]-1;
 		int startDay=dates[2]-1;
 		int endYear=dates[3]-baseYear;
 		int endMonth=dates[4]-1;
-		int endDay;//=dates[5]-1;
+		int endDay;
 		int currentDay=0;
+		
+		while(endYear>capacity.size()-1){
+			addYear();
+		}
 
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
@@ -72,6 +66,7 @@ public class BookingCalendar {
 					if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)==maxCapacities[type]){
 						occupiedDates.add(currentYear + "-" + currentMonth + "-"+ currentDay);
 					}
+					currentDay++;
 				}
 			}
 		}
@@ -86,7 +81,7 @@ public class BookingCalendar {
 		int startDay=dates[2]-1;
 		int endYear=dates[3]-baseYear;
 		int endMonth=dates[4]-1;
-		int endDay=dates[5]-1;
+		int endDay;
 		int currentDay=0;
 
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
@@ -116,6 +111,7 @@ public class BookingCalendar {
 					else {
 						result.add(currentYear + "-" + currentMonth + "-"+ currentDay + "LOW");
 					}
+					currentDay++;
 				}
 			}
 		}
@@ -150,7 +146,7 @@ public class BookingCalendar {
 		}
 	}
 
-	public void addYear(){
+	private void addYear(){
 		int year = Calendar.getInstance().get(Calendar.YEAR)+capacity.size()+1;
 		for(int total = 0;total < 12;total++){
 			calendar = new GregorianCalendar(year, total, 1);
