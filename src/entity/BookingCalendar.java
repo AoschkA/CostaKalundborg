@@ -25,7 +25,7 @@ public class BookingCalendar {
 		String[] tildatoint = tildato.split("-");
 		boolean done = false;
 		while(!done){
-			capacity.get(Integer.parseInt(fradatoint[0])-year);
+			capacity.get(Integer.parseInt(fradatoint[0])-year).get(index);
 			
 		}
 
