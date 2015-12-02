@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
-import Entity.Employee;
+import entity.login.Employee;
 
 public class LoginLogic {
 	ArrayList<Employee> employees = new ArrayList<Employee>();

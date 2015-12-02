@@ -1,4 +1,4 @@
-package entity;
+package entity.login;
 
 public class Employee {
 	private boolean active,admin;
