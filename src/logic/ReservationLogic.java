@@ -87,7 +87,9 @@ public class ReservationLogic {
 		else if(newDepartureDateInt>oldDeparturedateInt){
 			reservedDays=bcl.reservePeriod(oldDepartureDate, newDepartureDate, type);
 			if(reservedDays.get(0).endsWith("HIGH") || reservedDays.get(0).endsWith("LOW")){
-				reservation.getReservedDays().addAll(reservedDays);
+				ArrayList<String> temp =reservation.getReservedDays();
+				temp.addAll(reservedDays);
+				reservation.setReservedDays(temp);
 				return null;
 			}
 		}
