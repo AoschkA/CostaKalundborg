@@ -1,7 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
-import entity.BookingCalendar;
+import entity.reservation.BookingCalendar;
 
 public class BookingCalendarLogic {
 
