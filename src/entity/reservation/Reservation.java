@@ -36,4 +36,5 @@ public abstract class Reservation {
 	public int getId() {return id;}
 	public int getType() { return type;}
 	public ArrayList<String> getReservedDays() {return reservedDays;}
+	public void setReservedDays(ArrayList<String> reservedDays){this.reservedDays= reservedDays;}
 }
