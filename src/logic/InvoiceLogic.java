@@ -24,13 +24,15 @@ public class InvoiceLogic {
 			if (r.getId()==Integer.parseInt(reservationIDs[i])) targetReservations.add(r);
 			}
 		}
-		invoiceList.add(new Invoice(targetReservations));
-		return targetReservations.size();
+		Invoice i = new Invoice(targetReservations);
+		invoiceList.add(i);
+		return i.getId();
 	}
 	
-	public int makeInvoice(ArrayList <Invoice> invoiceList){
-		this.invoiceList = invoiceList;
-		invoiceList.
+	public int makeInvoice(ArrayList<Reservation> reservationList){
+		Invoice i = new Invoice(reservationList);
+		invoiceList.add(i);
+		return i.getId();
 	}
 	
 	public ArrayList<Invoice> getCustomerInvoices(String customerID){
@@ -44,7 +46,7 @@ public class InvoiceLogic {
 		return invoiceList;
 	}
 
-	public ArrayList<Invoice> getInvoices() {
+	public ArrayList<Invoice> getInvoiceList() {
 		return invoiceList;
 	}
 	
