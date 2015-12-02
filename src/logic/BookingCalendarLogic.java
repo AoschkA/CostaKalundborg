@@ -1,18 +1,23 @@
 package logic;
 
 import java.util.ArrayList;
+import entity.BookingCalendar;
 
 public class BookingCalendarLogic {
-	private int caravanCapacity = 0;
-	private int tentCapacity = 0;
-	private int luxuryCottageCapacity = 0;
-	private int cottageCapacity = 0;
+	
+	protected enum Type {Caravan, LargeCaravan, Tent, LuxuryCottagePatio, LuxuryCottage, LargeCottage, MediumCottage, SmallCottage};
+
+	BookingCalendar bc = new BookingCalendar();
 	
 	public ArrayList<String> checkPeriod(String arrivalDate, String departureDate, int type){
 		return new ArrayList();
 	}
 	
 	public void reservePeriod(String arrivalDate, String departureDate, int type){
+		
+	}
+	
+	public void deletePeriod(String startDate, String endDate, int type){
 		
 	}
 
