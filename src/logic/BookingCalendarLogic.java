@@ -9,16 +9,20 @@ public class BookingCalendarLogic {
 
 	BookingCalendar bc = new BookingCalendar();
 	
+	public ArrayList<String> changeReservation(){
+		ArrayList<String> result = new ArrayList<String>();;
+		return result;
+	}
+	
 	public ArrayList<String> checkPeriod(String arrivalDate, String departureDate, int type){
-		return new ArrayList();
+		return bc.getOccupiedDays(arrivalDate, departureDate, type);
 	}
 	
 	public void reservePeriod(String arrivalDate, String departureDate, int type){
-		
+		bc.setReservation(arrivalDate, departureDate, type, 1);
 	}
 	
 	public void deletePeriod(String startDate, String endDate, int type){
-		
+		bc.setReservation(startDate, endDate, type, -1);
 	}
-
 }

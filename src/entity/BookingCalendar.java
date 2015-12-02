@@ -28,18 +28,18 @@ public class BookingCalendar {
 		//		String[] tildatoint = tildato.split("-");
 	}
 
-	public ArrayList<String> getPeriod(String arrivalDate, String departureDate, int type ){
-		ArrayList<String> period = new ArrayList<String>();
-//		String[] firstDateString = arrivalDate.split("-");
-//		String[] lastDateString = departureDate.split("-");
-//		int[] dates = new int[6];
-//
-//		for(int i=0; i<3; i++){
-//			dates[i] = Integer.parseInt(firstDateString[i]);
-//		}
-//		for(int i=0; i<3; i++){
-//			dates[i+3] = Integer.parseInt(lastDateString[i]);
-//		}
+	public ArrayList<String> getOccupiedDays(String arrivalDate, String departureDate, int type ){
+		ArrayList<String> occupiedDates = new ArrayList<String>();
+		//		String[] firstDateString = arrivalDate.split("-");
+		//		String[] lastDateString = departureDate.split("-");
+		//		int[] dates = new int[6];
+		//
+		//		for(int i=0; i<3; i++){
+		//			dates[i] = Integer.parseInt(firstDateString[i]);
+		//		}
+		//		for(int i=0; i<3; i++){
+		//			dates[i+3] = Integer.parseInt(lastDateString[i]);
+		//		}
 
 		int[] dates = parseDates(arrivalDate, departureDate);
 
@@ -48,12 +48,16 @@ public class BookingCalendar {
 		int startDay=dates[2]-1;
 		int endYear=dates[3]-baseYear;
 		int endMonth=dates[4]-1;
-		int endDay=dates[5]-1;
+		int endDay;//=dates[5]-1;
 		int currentDay=0;
 
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
-				if(currentMonth==startMonth){
+				if(startMonth==endMonth){
+					currentDay=startDay;
+					endDay=dates[5]-1;
+				}
+				else if(currentMonth==startMonth){
 					currentDay=startDay;
 					endDay=capacity.get(currentYear).get(currentMonth).size();
 				}
@@ -61,20 +65,21 @@ public class BookingCalendar {
 					currentDay=0;
 					endDay = dates[5]-1;
 				} else {
+					currentDay=0;
 					endDay=capacity.get(currentYear).get(currentMonth).size();
 				}
 				while(currentDay<endDay){
 					if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)==maxCapacities[type]){
-						period.add(currentYear + "-" + currentMonth + "-"+ currentDay);
+						occupiedDates.add(currentYear + "-" + currentMonth + "-"+ currentDay);
 					}
 				}
 			}
 		}
-		return period;
+		return occupiedDates;
 	}
 
-	
-	public void reservePeriod(String arrivalDate, String departureDate, int type ){
+	public ArrayList<String> setReservation(String arrivalDate, String departureDate, int type, int value){
+		ArrayList<String> result = new ArrayList<>();
 		int[] dates = parseDates(arrivalDate, departureDate);
 		int startYear=dates[0]-baseYear;
 		int startMonth=dates[1]-1;
@@ -86,7 +91,11 @@ public class BookingCalendar {
 
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
-				if(currentMonth==startMonth){
+				if(startMonth==endMonth){
+					currentDay=startDay;
+					endDay=dates[5]-1;
+				}
+				else if(currentMonth==startMonth){
 					currentDay=startDay;
 					endDay=capacity.get(currentYear).get(currentMonth).size();
 				}
@@ -99,11 +108,18 @@ public class BookingCalendar {
 				}
 				while(currentDay<endDay){
 					if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)<maxCapacities[type]){
-						capacity.get(currentYear).get(currentMonth).get(currentDay).add(1);
+						capacity.get(currentYear).get(currentMonth).get(currentDay).add(value);
+					}
+					if ((currentMonth==6 && currentDay>=12) || (currentMonth==8 && currentDay<=16)){
+						result.add(currentYear + "-" + currentMonth + "-"+ currentDay + "HIGH");
+					}
+					else {
+						result.add(currentYear + "-" + currentMonth + "-"+ currentDay + "LOW");
 					}
 				}
 			}
 		}
+		return result;
 	}
 
 	// Get the number of days in that month
@@ -115,7 +131,7 @@ public class BookingCalendar {
 	//		System.out.println(daysInMonth);
 	//}
 
-	public void initializeCalendar(){
+	private void initializeCalendar(){
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		for(int cap = 0;cap < 3;cap++){
 			for(int total = 0;total < 12;total++){
@@ -150,6 +166,7 @@ public class BookingCalendar {
 		year++;
 		capacity.add(month);
 	}
+	
 	private int[] parseDates(String arrivalDate, String departureDate){
 		String[] firstDateString = arrivalDate.split("-");
 		String[] lastDateString = departureDate.split("-");
