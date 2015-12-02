@@ -10,9 +10,10 @@ import entity.reservation.Reservation;
 public class TUIController {
 	private BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 	private TUI TUI = new TUI();
+	private mainController mainController;
 	
-	public TUIController(){
-		
+	public TUIController(mainController mainController){
+		this.mainController = mainController;
 	}
 	
 	public String getStringInput() {
