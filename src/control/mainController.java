@@ -37,9 +37,15 @@ public class mainController {
 		return true;
 		}
 		return false;
-		
-		
 	}
+	
+	public void deleteReservation(int customerID){
+		reservationLogic.deleteReservation(reservationID);
+	}
+	public void changeReservation(int customerID, String arrivalDate, String departureDate) {
+		Reservation r = reservationLogic.getReservation()
+	}
+	
 	
 	
 	

@@ -41,4 +41,9 @@ public class ReservationLogic {
 			if (r.getId()==reservationID) reservationList.remove(r);
 		}
 	}
+	public void deleteReservation(String customerID) {
+		for (Reservation r: reservationList) {
+			if (r.getCustomerID()==customerID) reservationList.remove(r);
+		}
+	}
 }
