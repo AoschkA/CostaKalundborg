@@ -7,29 +7,25 @@ import entity.invoice.Invoice;
 import entity.reservation.Reservation;
 
 public class InvoiceLogic {
-	ArrayList<Invoice> invoiceList;
+	private static ArrayList<Invoice> invoiceList;
+	private static ArrayList<Reservation> reservationList;
 	
 	
-	public InvoiceLogic(){
-		
+	public InvoiceLogic(ReservationLogic RL){
+		invoiceList = new ArrayList<Invoice>();
+		reservationList = RL.getReservationList();
 	}
 	
-	public int makeInvoice(String string){
-		String[] reservationIDs = string.split(",");
-		
+	public int makeInvoice(String reservations){
+		String[] reservationIDs = reservations.split(",");
+		ArrayList<Reservation> targetReservations = new ArrayList<Reservation>();
+		for (Reservation r: reservationList){
 		for (int i=0;i<reservationIDs.length;i++){
-			for (i;)
+			if (r.getId()==Integer.parseInt(reservationIDs[i])) targetReservations.add(r);
+			}
 		}
-		ArrayList reservationIDsList= new ArrayList(Arrays.asList(reservationIDs));
-		
-		ArrayList<Reservation> reservationList= new ArrayList<Reservation>();
-		for(Reservation r : reservationIDs){
-		reservationList.add(
-		}
-		
-		
-		invoiceList.add(new Invoice(reservationIDsList))
-		
+		invoiceList.add(new Invoice(targetReservations));
+		return targetReservations.size();
 	}
 	
 	public int makeInvoice(ArrayList <Invoice> invoiceList){

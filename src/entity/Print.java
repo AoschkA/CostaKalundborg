@@ -30,7 +30,7 @@ public class Print {
 		}
 	}
 	private static String createPrintString() {
-		String finalprint = ""+currentInvoice.getId()+"\n"+"---------------------- \n";
+		String finalprint = "Fakture nummer: "+currentInvoice.getId()+"\n"+"---------------------- \n";
 		for (Reservation r: currentInvoice.getReservationList()){
 			finalprint += "Kunde: "+r.getCustomerID()+"\n"+
 						"Ankomst dato: "+r.getArrivalDate()+"\t"+"Afrejse dato: "+r.getDepartureDate()+"\n";
