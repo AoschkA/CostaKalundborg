@@ -43,6 +43,7 @@ public class TUI {
 		System.out.println("Slet Reservation");
 		System.out.println("1. Indtast reservations id");
 		System.out.println("2. Søg reservation på kundes telefonnummer");
+		System.out.println("");
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}

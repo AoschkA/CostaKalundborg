@@ -85,20 +85,63 @@ public class TUIController {
 		
 	}
 	
-	public String deleteReservation(){
-		return null;
+	public void deleteReservation(){
+		TUI.deleteReservation();
+		String resID = null;
+		String phoneNr = null;
+		
+		whileLoop:
+		while(true){
+			String input = getStringInput();
+		switch(input){
+		case "1" : 
+			System.out.println("Indtast reservations ID:");
+			resID = getStringInput();
+			// Metode til slet
+			break;
+		case "2" :
+			System.out.println("Indtast telefonnummer:");
+			phoneNr = getStringInput();
+			// Metode til at finde ID ud fra tlfnr
+			break;
+		case "3" :
+			break whileLoop;
+		}
+		}
 	}
 	
-	public String changeReservation(){
-		return null;
+	public void changeReservation(){
+		TUI.changeReservation();
+		String resID = null;
+		String phoneNr = null;
+		
+		whileLoop:
+		while(true){
+			String input = getStringInput();
+		switch(input){
+		case "1" : 
+			System.out.println("Indtast reservations ID:");
+			resID = getStringInput();
+			// Metode til slet
+			break;
+		case "2" :
+			System.out.println("Indtast telefonnummer:");
+			phoneNr = getStringInput();
+			// Metode til at finde ID ud fra tlfnr
+			break;
+		case "3" :
+			break whileLoop;
+		}
+		}
+		
 	}
 	
-	public String checkIn(){
-		return null;
+	public void checkIn(){
+		
 	}
 	
-	public String checkOut(){
-		return null;
+	public void checkOut(){
+		
 	}
 	
 	
