@@ -1,22 +1,19 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import entity.invoice.Invoice;
 import entity.reservation.Reservation;
 
 public class InvoiceLogic {
 	private static ArrayList<Invoice> invoiceList;
-	private static ArrayList<Reservation> reservationList;
 	
 	
-	public InvoiceLogic(ReservationLogic RL){
+	public InvoiceLogic(){
 		invoiceList = new ArrayList<Invoice>();
-		reservationList = RL.getReservationList();
 	}
 	
-	public int makeInvoice(String reservations){
+	public int makeInvoice(String reservations, ArrayList<Reservation> reservationList){
 		String[] reservationIDs = reservations.split(",");
 		ArrayList<Reservation> targetReservations = new ArrayList<Reservation>();
 		for (Reservation r: reservationList){
