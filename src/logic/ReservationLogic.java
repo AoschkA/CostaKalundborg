@@ -2,32 +2,40 @@ package logic;
 
 import java.util.ArrayList;
 
-import entity.reservation.Caravan;
+import entity.reservation.CampSite;
 import entity.reservation.Cottage;
 import entity.reservation.Reservation;
-import entity.reservation.Tent;
 
 public class ReservationLogic {
 	private static ArrayList<Reservation> reservationList;
-	
+	private BookingCalendarLogic bcl;
+
 	public ReservationLogic() {
 		reservationList = new ArrayList<Reservation>();
+		bcl = new BookingCalendarLogic();
 	}
-	
-	public void makeCaravan(String customerID, boolean arrived, String arrivalDate, String departureDate,
-			int numChildren, int numAdults, int numDogs, boolean largeCampSite) {
-		reservationList.add(new Caravan(customerID, arrived, arrivalDate, departureDate, 
-				numChildren, numAdults, numDogs, largeCampSite));
+
+	public ArrayList<String> makeCampsite(String customerID, boolean arrived, String arrivalDate, String departureDate,
+			int numChildren, int numAdults, int numDogs, int type) {
+		ArrayList<String> reservedDays = bcl.reservePeriod(arrivalDate, departureDate, type);
+		if(reservedDays.get(0).endsWith("HIGH") || reservedDays.get(0).endsWith("LOW")){
+			reservationList.add(new CampSite(reservedDays, customerID, arrived, arrivalDate, departureDate, 
+					numChildren, numAdults, numDogs, type));
+			return null;
+		}
+		else {return reservedDays;}
 	}
-	public void makeTent(String customerID, boolean arrived, String arrivalDate,
-			String departureDate, int numChildren, int numAdults, int numDogs) {
-		reservationList.add(new Tent(customerID, arrived, arrivalDate, departureDate, 
-				numChildren, numAdults, numDogs));
+
+	public ArrayList<String> makeCottage(String customerID, boolean arrived, String arrivalDate,
+			String departureDate, int numPersons, int type) {
+		ArrayList<String> reservedDays = bcl.reservePeriod(arrivalDate, departureDate, type);
+		if(reservedDays.get(0).endsWith("HIGH") || reservedDays.get(0).endsWith("LOW")){
+			reservationList.add(new Cottage(reservedDays, customerID, arrived, arrivalDate, departureDate, numPersons, type));
+			return null;
+		}
+		else {return reservedDays;}
 	}
-	public void makeCottage(String customerID, boolean arrived, String arrivalDate,
-			String departureDate, int numPersons, int cottageType) {
-		reservationList.add(new Cottage(customerID, arrived, arrivalDate, departureDate, numPersons, cottageType));
-	}
+
 	public ArrayList<Reservation> getReservation(String customerID) {
 		ArrayList<Reservation> output = new ArrayList<Reservation>();
 		for (Reservation r:reservationList) {
@@ -35,15 +43,25 @@ public class ReservationLogic {
 		}
 		return output;
 	}
+
 	public ArrayList<Reservation> getReservationList() { return reservationList;}
+
 	public void deleteReservation(int reservationID) {
 		for (Reservation r: reservationList) {
-			if (r.getId()==reservationID) reservationList.remove(r);
+			if (r.getId()==reservationID) {
+				bcl.deletePeriod(r.getArrivalDate(), r.getDepartureDate(), r.getType());
+				reservationList.remove(r);
+			}
 		}
 	}
-	public void deleteReservation(String customerID) {
-		for (Reservation r: reservationList) {
-			if (r.getCustomerID()==customerID) reservationList.remove(r);
-		}
+
+	//	public void deleteReservation(String customerID) {
+	//		for (Reservation r: reservationList) {
+	//			if (r.getCustomerID()==customerID) reservationList.remove(r);
+	//		}
+	//	}
+
+	public void changeReservation(){
+
 	}
 }

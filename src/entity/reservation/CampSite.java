@@ -1,13 +1,15 @@
 package entity.reservation;
 
-public abstract class CampSite extends Reservation{
+import java.util.ArrayList;
+
+public class CampSite extends Reservation{
 	private int numChildren;
 	private int numAdults;
 	private int numDogs;
 
-	public CampSite(String customerID, boolean arrived, String arrivalDate,
-			String departureDate, int numChildren, int numAdults, int numDogs) {
-		super(customerID, arrived, arrivalDate, departureDate);
+	public CampSite(ArrayList<String> reservedDays, String customerID, boolean arrived, String arrivalDate,
+			String departureDate, int numChildren, int numAdults, int numDogs, int type) {
+		super(reservedDays, customerID, arrived, arrivalDate, departureDate, type);
 		this.numChildren=numChildren;
 		this.numAdults=numAdults;
 		this.numDogs=numDogs;

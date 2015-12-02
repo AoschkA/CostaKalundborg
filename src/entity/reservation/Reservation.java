@@ -1,20 +1,26 @@
 package entity.reservation;
 
+import java.util.ArrayList;
+
 public abstract class Reservation {
+	private ArrayList<String> reservedDays;
 	private static int idCounter = 0;
 	private int id;
+	private int type;
 	private String customerID;
 	private boolean arrived;
 	private String arrivalDate;
 	private String departureDate;
 	private int powerConsumption;
 	
-	public Reservation(String customerID, boolean arrived, String arrivalDate, String departureDate) {
+	public Reservation(ArrayList<String> reservedDays, String customerID, boolean arrived, String arrivalDate, String departureDate, int type) {
 		id=idCounter++;
+		this.reservedDays=reservedDays;
 		this.customerID=customerID;
 		this.arrived=arrived;
 		this.arrivalDate=arrivalDate;
 		this.departureDate=departureDate;
+		this.type=type;
 		powerConsumption=0;
 	}
 	public String getCustomerID() {return customerID;}
@@ -28,8 +34,6 @@ public abstract class Reservation {
 	public int getPowerConsumption() {return powerConsumption;}
 	public void setPowerConsumption(int powerConsumption) {this.powerConsumption = powerConsumption;}
 	public int getId() {return id;}
-	
-	
-	
-
+	public int getType() { return type;}
+	public ArrayList<String> getReservedDays() {return reservedDays;}
 }
