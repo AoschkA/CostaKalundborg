@@ -1,4 +1,4 @@
-package tui;
+package boundary;
 
 public class TUI {
 
