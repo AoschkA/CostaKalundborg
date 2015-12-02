@@ -33,14 +33,15 @@ public class InvoiceLogic {
 	}
 	
 	public ArrayList<Invoice> getCustomerInvoices(String customerID){
+		ArrayList<Invoice> targetList = new ArrayList<Invoice>();
 		for (Invoice invoice : invoiceList){
 			for(int i = 0;i<invoice.getReservationList().size();i++){
 				if (invoice.getReservationList().get(i).getCustomerID() == customerID){
-					invoiceList.add(invoice);
+					targetList.add(invoice);
 				}
 			}
 		}
-		return invoiceList;
+		return targetList;
 	}
 
 	public ArrayList<Invoice> getInvoiceList() {
