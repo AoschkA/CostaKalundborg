@@ -53,6 +53,7 @@ public class TUI {
 		System.out.println("Ændre Reservation");
 		System.out.println("1. Indtast reservations id");
 		System.out.println("2. Søg reservation på kundes telefonnummer");
+		System.out.println("");
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
@@ -62,8 +63,8 @@ public class TUI {
 		System.out.println("Reservation ID");
 		System.out.println("1. Ændre fra dato");
 		System.out.println("2. Ændre til dato");
-		System.out.println("3. Vis reservation");
-		System.out.println("4. Fortryd og tilbage til hovedmenu");
+		System.out.println("");
+		System.out.println("3. Fortryd og tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
 	
@@ -72,6 +73,7 @@ public class TUI {
 		System.out.println("Tjek Ind");
 		System.out.println("1. Indtast reservations id");
 		System.out.println("2. Søg reservation på kundes telefonnummer");
+		System.out.println("");
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
@@ -81,6 +83,7 @@ public class TUI {
 		System.out.println("Tjek Ud");
 		System.out.println("1. Indtast reservations id");
 		System.out.println("2. Sog reservation paa kundes telefonnummer");
+		System.out.println("");
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
@@ -89,6 +92,7 @@ public class TUI {
 		System.out.println("#######################################");
 		System.out.println("Print kvittering");
 		System.out.println("1. Udskriv kvittering");
+		System.out.println("");
 		System.out.println("2. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}

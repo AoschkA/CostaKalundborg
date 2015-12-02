@@ -136,6 +136,37 @@ public class TUIController {
 		
 	}
 	
+	public void changeReservationInner(String resID){
+		TUI.reservationID();
+		System.out.println("Ændrer for: " + resID);
+		String fromdate = null;
+		String todate = null;
+		
+		whileLoop:
+		while(fromdate == null && todate == null){
+			String input = getStringInput();
+		switch(input){
+		case "1" : 
+			System.out.println("Fra dato:");
+			fromdate = getStringInput();
+			// Metode til slet
+			break;
+		case "2" :
+			System.out.println("Til dato:");
+			todate = getStringInput();
+			// Metode til at finde ID ud fra tlfnr
+			break;
+		case "3" : 
+			break whileLoop;
+			
+		}
+		}
+		if(fromdate != null  && todate == null){
+			//Gem ny dato for reservationsID.
+		}
+		
+	}
+	
 	public void checkIn(){
 		
 	}
