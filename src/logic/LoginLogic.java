@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import entity.login.Employee;
 
 public class LoginLogic {
-	ArrayList<Employee> employees = new ArrayList<Employee>();
+	private static ArrayList<Employee> employees;
 	
 	public LoginLogic(){
-		employees.add(new Employee(true, true, "ErAktiv", "ErAdmin"));
-		employees.add(new Employee(true,false, "ErAktiv","ErIkkeAdmin"));
-		employees.add(new Employee(false,true, "ErIkkeAktiv","ErAdmin"));
-		employees.add(new Employee(false,false,"ErIkkeAktiv","ErIkkeAdmin"));
+		employees = new ArrayList<Employee>();
+	}
+	public void addEmployee(boolean admin, String username, String password) {
+		employees.add(new Employee(false, admin, username, password));
 	}
 	
 	public boolean validateLogin(String username, String password){
