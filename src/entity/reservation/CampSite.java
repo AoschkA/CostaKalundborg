@@ -14,11 +14,13 @@ public class CampSite extends Reservation{
 		this.numAdults=numAdults;
 		this.numDogs=numDogs;
 	}
-
+	@Override
 	public int getNumChildren() {return numChildren;}
 	public void setNumChildren(int numChildren) {this.numChildren = numChildren;}
+	@Override
 	public int getNumAdults() {return numAdults;}
 	public void setNumAdults(int numAdults) {this.numAdults = numAdults;}
+	@Override
 	public int getNumDogs() {return numDogs;}
 	public void setNumDogs(int numDogs) {this.numDogs = numDogs;}
 }

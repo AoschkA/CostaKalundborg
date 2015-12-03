@@ -10,7 +10,8 @@ public class Cottage extends Reservation{
 		super(reservedDays, customerID, arrived, arrivalDate, departureDate, type);
 		this.numPersons=numPersons;
 	}
-
+	
+	@Override
 	public int getNumPersons() {return numPersons;}
 	public void setNumPersons(int numPersons) {this.numPersons = numPersons;}
 }
