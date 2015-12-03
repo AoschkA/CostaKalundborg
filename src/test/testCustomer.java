@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import entity.login.CustomerDB;
 import org.junit.Test;
 
-public class TestDB {
+public class testCustomer {
 
 	@Test
 	public void positiveCustomerTest() {

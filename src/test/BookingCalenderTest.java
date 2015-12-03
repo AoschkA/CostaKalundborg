@@ -12,8 +12,8 @@ public class BookingCalenderTest {
 		String departureDate ="2016-01-05";
 		int type = 1;
 
-		ArrayList<String> test = null;;
-		ArrayList<String> test1 = null;;
+		ArrayList<String> test = null;
+		ArrayList<String> test1 = null;
 		for(int i=0;i<100+1; i++){
 			test= bc.getOccupiedDays(arrivalDate, departureDate, type );
 			if(test.isEmpty()){
@@ -22,20 +22,6 @@ public class BookingCalenderTest {
 					System.out.println(test1.get(k));
 				}
 			}
-			if(!test.isEmpty()){
-				for(int j=0; j<test.size();j++){
-					System.out.println(test.get(j));
-				}
-			}
-			
-			}
-//		if(!test.isEmpty()){
-//			for(int i=0; i<test.size();i++){
-//				System.out.println(test.get(i));
-//			}
-//		}
-//		for(int i=0; i<test1.size();i++){
-//			System.out.println(test1.get(i));
-//		}
+		}
 	}
 }

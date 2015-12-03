@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import entity.login.Employee;
 
-public class LoginDB {
+public class testLogin {
 
 	@Test
 	public void positiveLoginTest() {
