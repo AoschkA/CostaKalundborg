@@ -24,21 +24,17 @@ public class mainController {
 		if (customerDB.getCustomer(phonenumber).getName()==null) return null;
 		else return customerDB.getCustomer(phonenumber).getName();
 	}
-	public boolean createReservation(String phonenumber, String name, String arrivalDate, String departureDate, 
-			String type, int numChildren, int numAdults, int numDogs, boolean largeCampSite, int cottageType){
-		Customer c; 
-		if (name==null) c = customerDB.getCustomer(phonenumber);
-		else customerDB.addCustomer(name, phonenumber);
-		switch (type) {
-		case "tent": reservationLogic.makeCampsite(phonenumber, false, arrivalDate, departureDate, numChildren, numAdults, numDogs, 0);
+	public void createUser(String phonenumber, String name) {
+		customerDB.addCustomer(name, phonenumber);
+	}
+	public boolean createReservation(String phonenumber, String arrivalDate, String departureDate, 
+			int numChildren, int numAdults, int numDogs, int type){
+		if (type < 3) 
+			reservationLogic.makeCampsite
+			(phonenumber, false, arrivalDate, departureDate, numChildren, numAdults, numDogs, type);
+		else
+			reservationLogic.makeCottage(phonenumber, false, arrivalDate, departureDate, numAdults, type);
 		return true;
-		case "caravan": reservationLogic.makeCampsite(phonenumber, false, arrivalDate, departureDate, numChildren, 
-				numAdults, numDogs, 2);
-		return true;
-		case "cottage": reservationLogic.makeCottage(phonenumber, false, arrivalDate, departureDate, numAdults, cottageType);
-		return true;
-		}
-		return false;
 	}
 	
 	public void deleteReservation(int reservationID){

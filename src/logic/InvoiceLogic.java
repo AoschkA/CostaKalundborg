@@ -72,7 +72,7 @@ public class InvoiceLogic {
 			for (String s: r.getReservedDays()){
 				if (s.endsWith("LOW")) season=0; 
 				else {season=1; highseasonUsed=true;}
-				
+
 				if (type<3) {
 					adultPrice += r.getNumAdults()*getPriceOfIndex(7, season);
 					childrenPrice += r.getNumChildren()*getPriceOfIndex(8, season);
@@ -95,25 +95,25 @@ public class InvoiceLogic {
 			expenses.add("Kunde: "+r.getCustomerID());
 			expenses.add("Ankomst dato: "+r.getArrivalDate()+"\t Afrejse dato: "+r.getDepartureDate());
 			expenses.add("--------------\n");
-			expenses.add(getTypeDescribtion(type));
+			expenses.add(getTypeDescribtion(type)+"\n");
 			if (type<3){
-			expenses.add("Pladsgebyr: "+areaPrice);
-			expenses.add("Voksne: "+adultPrice);
-			expenses.add("Børn (0-11 år): "+childrenPrice);
-			expenses.add("Hunde: "+dogPrice);
-			expenses.add("Strøm: "+power);
-			totalPrice = adultPrice+childrenPrice+dogPrice+areaPrice+power;
-			} else if (type <5 && type >2) {
+				expenses.add("Pladsgebyr: "+areaPrice);
+				expenses.add("Voksne: "+adultPrice);
+				expenses.add("Børn (0-11 år): "+childrenPrice);
+				expenses.add("Hunde: "+dogPrice);
+				expenses.add("Strøm: "+power);
+				totalPrice = adultPrice+childrenPrice+dogPrice+areaPrice+power;
+			} else if (type==3 || type==4) {
 				expenses.add("Pris for hytte: "+cottagePrice);
 				if (r.getNumPersons()>4) expenses.add("Tillæg pr ekstra person: "+extraPersonPrice);
 				expenses.add("Strøm: "+power);
 				totalPrice = cottagePrice+extraPersonPrice+power;
-			} else if (type > 5){
+			} else if (type > 4){
 				expenses.add("Pris for hytte: "+cottagePrice);
 				expenses.add("Strøm: "+power);
 				totalPrice = cottagePrice+power;
 			}
-			expenses.add("Total for udlejning"+totalPrice);
+			expenses.add("Total for udlejning: "+totalPrice);
 			globalPrice+=totalPrice;
 			expenses.add("\n--------------\n");
 		}
@@ -121,7 +121,7 @@ public class InvoiceLogic {
 		expenses.add("Totalpris for alle udlejninger: "+globalPrice);
 		printer.printInvoice(expenses, invoice_id);
 	}
-	
+
 	private String getTypeDescribtion(int type){
 		switch(type) {
 		case 0: return "Lille campingvogns areal";

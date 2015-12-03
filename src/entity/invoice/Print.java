@@ -34,7 +34,7 @@ public class Print {
 	
 	private void printFile(BufferedWriter bw) throws IOException {
 		for (String expense : expenses) {
-			bw.write(expense);
+			bw.write(expense+"\n");
 		}
 	}
 
