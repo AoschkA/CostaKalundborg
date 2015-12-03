@@ -1,4 +1,4 @@
-package control;
+package control; 
 
 import java.util.ArrayList;
 
@@ -27,8 +27,8 @@ public class mainController {
 	public void createUser(String phonenumber, String name) {
 		customerDB.addCustomer(name, phonenumber);
 	}
-	public boolean createReservation(String phonenumber, String arrivalDate, String departureDate, 
-			int numChildren, int numAdults, int numDogs, int type){
+	public boolean createReservation(String phonenumber, String arrivalDate, String departureDate, int persons, 
+			int numChildren, int numAdults , int numDogs, int type){
 		if (type < 3) 
 			reservationLogic.makeCampsite
 			(phonenumber, false, arrivalDate, departureDate, numChildren, numAdults, numDogs, type);
