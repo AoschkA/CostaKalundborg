@@ -30,7 +30,7 @@ public class BookingCalendar {
 		int endMonth=dates[4]-1;
 		int endDay;
 		int currentDay=0;
-
+		int currentEndMonth = 0;
 		// Add Year until the requested Year exists in the calendar
 		//		while(endYear>capacity.size()-1){
 		//			addYear();
@@ -39,7 +39,13 @@ public class BookingCalendar {
 		ArrayList<ArrayList<Integer>> start = capacity.get(startYear).get(startMonth);
 		ArrayList<ArrayList<Integer>> end = capacity.get(endYear).get(endMonth);
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
-			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
+			if(startMonth == 11 && endMonth != startMonth){
+				currentEndMonth = 11;
+			}
+			else{
+				currentEndMonth = endMonth;
+			}
+			for(int currentMonth=startMonth; currentMonth<=currentEndMonth; currentMonth++){
 				ArrayList<ArrayList<Integer>> current = capacity.get(currentYear).get(currentMonth);
 				if(current==start && current==end){
 					currentDay=startDay;
@@ -63,9 +69,9 @@ public class BookingCalendar {
 					//System.out.println("Get after : " + (currentDay+1) + " " + currentCapacity);
 					currentDay++;
 				}
+				currentDay=0;
 			}
 			startMonth=0;
-			currentDay=0;
 		}
 		return occupiedDates;
 	}
@@ -81,13 +87,18 @@ public class BookingCalendar {
 		int endMonth=dates[4]-1;
 		int endDay;
 		int currentDay=0;
-System.out.println(startYear + " " + endYear);
+		int currentEndMonth = 0;
 		// Increase the booking for the given period by one
 		ArrayList<ArrayList<Integer>> start = capacity.get(startYear).get(startMonth);
 		ArrayList<ArrayList<Integer>> end = capacity.get(endYear).get(endMonth);
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
-			System.out.println(startYear + " " + startMonth);
-			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
+			if(startMonth == 11 && endMonth != startMonth){
+				currentEndMonth = 11;
+			}
+			else{
+				currentEndMonth = endMonth;
+			}
+			for(int currentMonth=startMonth; currentMonth<=currentEndMonth; currentMonth++){
 				ArrayList<ArrayList<Integer>> current = capacity.get(currentYear).get(currentMonth);
 				if(current==start && current==end){
 					currentDay=startDay;
@@ -100,7 +111,8 @@ System.out.println(startYear + " " + endYear);
 				else if (current==end){
 					currentDay=0;
 					endDay = dates[5]-1;
-				} else {
+				} 
+				else {
 					currentDay=0;
 					endDay=current.size();
 				}
@@ -120,9 +132,9 @@ System.out.println(startYear + " " + endYear);
 					currentDay++;
 					//System.out.println("test");
 				}
+				currentDay=0;
 			}
 			startMonth=0;
-			currentDay=0;
 		}
 		// Return the ArrayList with the period including seasonal attribute
 		return result;
