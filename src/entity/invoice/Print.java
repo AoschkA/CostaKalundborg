@@ -11,14 +11,16 @@ import entity.reservation.Cottage;
 import entity.reservation.Reservation;
 
 public class Print {
-	private static Invoice currentInvoice;
+	private int invoice_id;
+	private ArrayList<String> expenses;
 	
-	public static void printInvoice(Invoice invoice) {
-		currentInvoice=invoice;
+	public void printInvoice(ArrayList<String> expenses, int invoice_id) {
+		this.expenses=expenses;
+		this.invoice_id=invoice_id;
 		writeFile();
 	}
-	private static void writeFile() {
-		String dbFile = "Invoices/invoice"+currentInvoice.getId();
+	private void writeFile() {
+		String dbFile = "Invoices/invoice"+invoice_id;
 		BufferedWriter bw = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(dbFile));
@@ -29,16 +31,11 @@ public class Print {
 			if (bw != null) try {bw.close();} catch (IOException e) {e.printStackTrace();}
 		}
 	}
-	private static String createPrintString() {
-		String finalprint = "Fakture nummer: "+currentInvoice.getId()+"\n"+"---------------------- \n";
-		for (Reservation r: currentInvoice.getReservationList()){
-			finalprint += "Kunde: "+r.getCustomerID()+"\n"+
-						"Ankomst dato: "+r.getArrivalDate()+"\t"+"Afrejse dato: "+r.getDepartureDate()+"\n";
+	
+	private void printFile(BufferedWriter bw) throws IOException {
+		for (String expense : expenses) {
+			bw.write(expense);
 		}
-		return finalprint;
-	}
-	private static void printFile(BufferedWriter bw) throws IOException {
-		bw.write(createPrintString());
 	}
 
 }
