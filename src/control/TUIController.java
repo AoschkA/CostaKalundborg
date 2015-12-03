@@ -58,6 +58,9 @@ public class TUIController {
 				case "1" : 
 					System.out.println("Indtast telefon:");
 					phone = getStringInput();
+					if(mainController.userExist(phone))
+						
+						
 					break;
 				case "2" :
 					System.out.println("Indtast navn:");
@@ -65,11 +68,11 @@ public class TUIController {
 					break;
 				case "3" :
 					System.out.println("Indtast start dato:");
-					name = getStringInput();
+					startdate = getStringInput();
 					break;
 				case "4" :
 					System.out.println("Indtast slut dato:");
-					name = getStringInput();
+					enddate = getStringInput();
 					break;
 				case "5" : //Skal rettes til grundtype
 					
@@ -86,10 +89,14 @@ public class TUIController {
 		
 	}
 	
+	//Finder ud af hvad for noget info der skal bruges ud fra typen af grund. 
+	public void infoFromRentType()
+	
 	public void deleteReservation(){
 		TUI.deleteReservation();
 		String resID = null;
 		String phoneNr = null;
+		String[][] resInfo = null;
 		
 		whileLoop:
 		while(true){
@@ -98,12 +105,22 @@ public class TUIController {
 		case "1" : 
 			System.out.println("Indtast reservations ID:");
 			resID = getStringInput();
-			// Metode til slet
+			int resIDint = Integer.parseInt(resID);
+			mainController.deleteReservation(resIDint);
 			break;
 		case "2" :
 			System.out.println("Indtast telefonnummer:");
 			phoneNr = getStringInput();
-			// Metode til at finde ID ud fra tlfnr
+			resInfo = mainController.findReservationID(phoneNr);
+			
+			for(int i=0;i<resInfo.length;i++){
+			System.out.println("");
+			System.out.println("Information om reservation: " + resInfo[i]);
+			System.out.println("Reservations ID: " + resInfo[i][0]);
+			System.out.println("Start på periode: " + resInfo[i][1]);
+			System.out.println("Slut på periode: " + resInfo[i][2]);
+			System.out.println("");
+			}
 			break;
 		case "3" :
 			break whileLoop;
