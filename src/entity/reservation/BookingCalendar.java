@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 public class BookingCalendar {
 	// Instantiate attributes
 	private static Calendar calendar = new GregorianCalendar();
-	private static ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> capacity = new ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>>();
+	private ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> capacity = new ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>>();
 	private int baseYear = 2015;
 	protected enum Type {Caravan, LargeCaravan, Tent, LuxuryCottage, LuxuryCottagePatio, LargeCottage, MediumCottage, SmallCottage};
 	protected int[] maxCapacities = {100, 100, 100, 68-65, 45-44, 2, 2+30-27, 9-6};
@@ -131,13 +131,13 @@ public class BookingCalendar {
 				int daysinMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 				booking = new ArrayList<Integer>();
 				for(int i = 0;i < 9;i++){
-					booking.add(0);
+					booking.add(new Integer(1));
 				}
 				day = new ArrayList<ArrayList<Integer>>();
 				for(int i = 0;i < daysinMonth;i++){
-					day.add(booking);
+					day.add((ArrayList<Integer>) booking.clone());
 				}
-				month.add(day);
+				month.add((ArrayList<ArrayList<Integer>>) day.clone());
 			}
 			year++;
 			capacity.add(month);
@@ -181,5 +181,12 @@ public class BookingCalendar {
 			dates[i+3] = Integer.parseInt(lastDateString[i]);
 		}
 		return dates;
+	}
+	
+	public void setBookingDay(int month, int day, int type, int value){
+		capacity.get(0).get(month).get(day).set(type, value);
+	}
+	public int getBookingDay(int month, int day, int type){
+		return capacity.get(0).get(month).get(day).get(type);
 	}
 }
