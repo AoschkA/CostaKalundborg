@@ -13,7 +13,6 @@ public class TUI {
 		System.out.println("#######################################");
 	}
 
-	
 	public void mainMenu(){
 		System.out.println("#######################################");
 		System.out.println("Hoved Menu");
@@ -37,13 +36,8 @@ public class TUI {
 		System.out.println("#######################################");
 		System.out.println("Ny Reservation");
 		System.out.println("1. Indtast kundes telefonnummer");
-		System.out.println("2. Indtast kundens Navn");
-		System.out.println("3. Fra dato YYYY-MM-DD");
-		System.out.println("4. Til dato YYYY-MM-DD");
-		System.out.println("5. Vælg reserveret grund");
-		System.out.println("6. Vælg type på grunden");
 		System.out.println("");
-		System.out.println("7. Tilbage til hovedmenu");
+		System.out.println("2. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
 	
@@ -118,8 +112,8 @@ public class TUI {
 	public void CampSiteInfo(){
 		System.out.println("#######################################");
 		System.out.println("Tjek Ud");
-		System.out.println("1. Indtast antal børn");
-		System.out.println("2. Indtast antal voksne");
+		System.out.println("1. Indtast antal voksne");
+		System.out.println("2. Indtast antal børn");
 		System.out.println("3. Indtast antal eventuelle hunde");
 		System.out.println("");
 		System.out.println("4. Gem og Tilbage");

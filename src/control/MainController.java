@@ -41,22 +41,20 @@ public class MainController {
 			reservationLogic.makeCampsite
 			(phonenumber, false, arrivalDate, departureDate, numChildren, numAdults, numDogs, type);
 		else
-			reservationLogic.makeCottage(phonenumber, false, arrivalDate, departureDate, numAdults, type);
+			reservationLogic.makeCottage(phonenumber, false, arrivalDate, departureDate, persons, type);
 		return true;
 	}
 	
 	public void deleteReservation(int reservationID){
 		reservationLogic.deleteReservation(reservationID);
 	}
-	public String[][] findReservationID(String phonenumber) {
+	public ArrayList<Reservation> findReservationID(String phonenumber) {
 		ArrayList<Reservation> reservations = reservationLogic.getReservations(phonenumber);
-		String[][] output = new String[reservations.size()][3];
-		for (int i=0; i<reservations.size(); i++) {
-			output[i][0] = Integer.toString(reservations.get(i).getId());
-			output[i][1] = reservations.get(i).getArrivalDate();
-			output[i][2] = reservations.get(i).getDepartureDate();
-		}
-		return output;
+		return reservations;
+	}
+	
+	public Reservation findReservation(int id){
+		return reservationLogic.getReservation(id);
 	}
 	
 	public void checkIn(int reservationID) {

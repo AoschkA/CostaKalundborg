@@ -42,10 +42,9 @@ public class TUIController {
 		case "6" : showReservation();   break;
 		default : System.out.println("Forkert tal."); break;
 		}
-
 		return input;
 	}
-	
+
 	public void showReservation(){
 		TUI.showReservation();
 		String resID = null;
@@ -58,14 +57,18 @@ public class TUIController {
 				switch(input){
 				case "1" : 
 					System.out.println("Indtast reservations ID:");
-					resID = getStringInput();
-					mainController.g
-					// Metode til udtjekning ud fra reservations ID
+					int id = Integer.parseInt(getStringInput());
+					customerReservation = mainController.findReservation(id);
+					printReservation(customerReservation);
 					break whileLoop;
 				case "2" :
 					System.out.println("Indtast telefonnummer:");
 					phoneNr = getStringInput();
 					// Metode til at finde ID ud fra tlfnr
+					customerReservations = mainController.findReservationID(phoneNr);
+					for(Reservation r:customerReservations){
+						printReservation(r);
+					}
 					break whileLoop;
 				case "3" :
 					break whileLoop;
@@ -93,41 +96,46 @@ public class TUIController {
 					System.out.println("Indtast telefon:");
 					phone = getStringInput();
 					name = mainController.userExist(phone);	
-					if(!name.equals("")){
-						System.out.println("Navnet " + name + " eksisterer i systemet, indtastning af navn er unødvendigt.");
-						break;
+					if(name.equals("")){
+						System.out.println("Indtast navn:");
+						name = getStringInput();
+						mainController.createUser(phone, name);
 					}
-				case "2" :
-					System.out.println("Indtast navn:");
-					name = getStringInput();
-					break;
-				case "3" :
+
 					System.out.println("Indtast start dato:");
 					startdate = getStringInput();
-					break;
-				case "4" :
+
 					System.out.println("Indtast slut dato:");
 					enddate = getStringInput();
-					break;
-				case "5" : 
+
 					System.out.println("Indtast grundtype, (1) for Cottage (2) for Campsite. ");
 					groundtype = Integer.parseInt(getStringInput());
 
 					if(groundtype != 1 && groundtype != 2){
 						System.out.println("Forkert input.");
+						break;
 					}
 					else
 					{
 						renttypeinfo = infoFromRentType(groundtype);
 					}					
-					break;
-
-				case "6" :
 					System.out.println("Type af grund: ");
+					if(groundtype == 2){
+						System.out.println("0. lille campingvognsplads");
+						System.out.println("1. stor campingvognsplads");
+						System.out.println("2. teltplads");
+					}
+					else if(groundtype == 1){
+						System.out.println("3. luxushytte");
+						System.out.println("4. luxushytte");
+						System.out.println("5. hytte");
+						System.out.println("6. hytte");
+						System.out.println("7. hytte");
+					}
 					type = Integer.parseInt(getStringInput());
 					break;
 
-				case "7" : break whileLoop;
+				case "6" : break whileLoop;
 				default : System.out.println("Forkert tal."); break;
 				}
 			}
@@ -138,7 +146,6 @@ public class TUIController {
 		} else {
 			System.out.println("Fejl");
 		}
-
 	}
 
 	//Finder ud af hvad for noget info der skal bruges ud fra typen af grund. 
@@ -150,54 +157,25 @@ public class TUIController {
 		renttypeinfo[3] = 0;
 
 		if(renttype == 1){
-			TUI.CottageInfo();
-			String input = getStringInput();
-
-			innerWhileLoop:
-				while(renttypeinfo[0] == 0){
-					switch (input){
-					case "1" : 
-						System.out.println("Indtast antal personer:");
-						renttypeinfo[0] = Integer.parseInt(getStringInput());
-						break;
-					case "2" :
-						break innerWhileLoop;
-					default: System.out.println("Forkert tal");
-					}
-				}
+			System.out.println("Indtast antal personer:");
+			renttypeinfo[0] = Integer.parseInt(getStringInput());
 		}
-
 		if(renttype == 2){
-			TUI.CampSiteInfo();
-			String input = getStringInput();
-
-			innerWhileLoop:
-				while(true){
-					switch (input){
-					case "1" :
-						System.out.println("Indtast antal voksne:");
-						renttypeinfo[2] = Integer.parseInt(getStringInput());
-					case "2" :
-						System.out.println("Indtast eventuelle antal børn: ");
-						renttypeinfo[1] = Integer.parseInt(getStringInput());
-					case "3" :
-						System.out.println("Indtast eventuelle antal hunde:");
-						renttypeinfo[3] = Integer.parseInt(getStringInput());
-					case "4" : 
-						break innerWhileLoop;
-					default : System.out.println("Forkert tal");
-					}
-				}	
+			System.out.println("Indtast antal voksne:");
+			renttypeinfo[2] = Integer.parseInt(getStringInput());
+			System.out.println("Indtast eventuelle antal børn: ");
+			renttypeinfo[1] = Integer.parseInt(getStringInput());
+			System.out.println("Indtast eventuelle antal hunde:");
+			renttypeinfo[3] = Integer.parseInt(getStringInput());
 		}
 		return renttypeinfo;
 	}
-
 
 	public void deleteReservation(){
 		TUI.deleteReservation();
 		String resID = null;
 		String phoneNr = null;
-		String[][] resInfo = null;
+		ArrayList<Reservation> resInfo = null;
 
 		whileLoop:
 			while(true){
@@ -208,20 +186,18 @@ public class TUIController {
 					resID = getStringInput();
 					int resIDint = Integer.parseInt(resID);
 					mainController.deleteReservation(resIDint);
+					System.out.println("Reservation Slettet.");
+					TUI.deleteReservation();
 					break;
 				case "2" :
 					System.out.println("Indtast telefonnummer:");
 					phoneNr = getStringInput();
 					resInfo = mainController.findReservationID(phoneNr);
 
-					for(int i=0;i<resInfo.length;i++){
-						System.out.println("");
-						System.out.println("Information om reservation: " + resInfo[i]);
-						System.out.println("Reservations ID: " + resInfo[i][0]);
-						System.out.println("Start på periode: " + resInfo[i][1]);
-						System.out.println("Slut på periode: " + resInfo[i][2]);
-						System.out.println("");
+					for(Reservation r:resInfo){
+						printReservation(r);
 					}
+					TUI.deleteReservation();
 					break;
 				case "3" :
 					break whileLoop;
@@ -279,13 +255,11 @@ public class TUIController {
 				case "3" : 
 					break whileLoop;
 				default : System.out.println("Forkert tal."); break;
-
 				}
 			}
 		if(fromdate != null  && todate == null){
 			//Gem ny dato for reservationsID.
 		}
-
 	}
 
 	public void checkIn(){
@@ -365,9 +339,113 @@ public class TUIController {
 					}
 					else{ System.out.println("Brugeren eksisterer ikke."); }}
 				else{ System.out.println("Du har glemt at indskrive et brugernavn eller adgangskode.");}
-
-
 			}
 		mainMenuOptions();
+	}
+
+	private void printReservation(Reservation r){
+		ArrayList<String> liste = r.getReservedDays();
+		switch(r.getType()){
+		case 0:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+
+			System.out.println("Antal Voksne: " + r.getNumAdults());
+			System.out.println("Antal Børn: " + r.getNumChildren());
+			System.out.println("Antal Hunde: " + r.getNumDogs());
+			break;
+		case 1:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+
+			System.out.println("Antal Voksne: " + r.getNumAdults());
+			System.out.println("Antal Børn: " + r.getNumChildren());
+			System.out.println("Antal Hunde: " + r.getNumDogs());
+			break;
+		case 2:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+
+			System.out.println("Antal Voksne: " + r.getNumAdults());
+			System.out.println("Antal Børn: " + r.getNumChildren());
+			System.out.println("Antal Hunde: " + r.getNumDogs());
+			break;
+		case 3:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+			System.out.println("Antal Personer: " + r.getNumPersons());
+			break;
+		case 4:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+			System.out.println("Antal Personer: " + r.getNumPersons());
+			break;
+		case 5:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+			System.out.println("Antal Personer: " + r.getNumPersons());
+			break;
+		case 6:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+			System.out.println("Antal Personer: " + r.getNumPersons());
+			break;
+		case 7:
+			System.out.println("Kunde telefonnummer: " + r.getCustomerID());
+			System.out.println("Reservation ID: " + r.getId());
+			System.out.println("Ankomst Dato: " + r.getArrivalDate());
+			System.out.println("Afgangs Dato: " + r.getDepartureDate());
+			System.out.println("Dags Liste:");
+			for(String s:liste){
+				System.out.println("Booket Dato: " + s);
+			}
+			System.out.println("Antal Personer: " + r.getNumPersons());
+			break;
+		default:
+			System.out.println("Forkert Indtastning, prøv igen");
+			break;
+		}
 	}
 }

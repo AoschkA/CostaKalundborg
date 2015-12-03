@@ -2,7 +2,7 @@ package entity.reservation;
 
 import java.util.ArrayList;
 
-public class Cottage extends Reservation{
+public class Cottage extends Reservation {
 	private int numPersons;
 
 	public Cottage(ArrayList<String> reservedDays, String customerID, boolean arrived, String arrivalDate,
@@ -10,8 +10,8 @@ public class Cottage extends Reservation{
 		super(reservedDays, customerID, arrived, arrivalDate, departureDate, type);
 		this.numPersons=numPersons;
 	}
-	
+
 	@Override
-	public int getNumPersons() {return numPersons;}
-	public void setNumPersons(int numPersons) {this.numPersons = numPersons;}
+	public int getNumPersons() { return this.numPersons; }
+	public void setNumPersons(int numPersons) { this.numPersons = numPersons; }
 }

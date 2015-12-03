@@ -21,7 +21,7 @@ public abstract class Reservation {
 		this.arrivalDate=arrivalDate;
 		this.departureDate=departureDate;
 		this.type=type;
-		powerConsumption=0;
+		this.powerConsumption=0;
 	}
 	public String getCustomerID() {return customerID;}
 	public void setCustomerID(String customerID) {this.customerID = customerID;}
@@ -37,10 +37,8 @@ public abstract class Reservation {
 	public int getType() { return type;}
 	public ArrayList<String> getReservedDays() {return reservedDays;}
 	public void setReservedDays(ArrayList<String> reservedDays){this.reservedDays= reservedDays;}
-	//getters for extended classes
-	public int getNumPersons(){ return 0;}
-	public int getNumChildren() {return 0;}
-	public int getNumAdults() {return 0;}
+	public int getNumPersons() { return 0; }
 	public int getNumDogs() {return 0;}
-	
-	}
+	public int getNumAdults() {return 0;}
+	public int getNumChildren() {return 0;}
+}
