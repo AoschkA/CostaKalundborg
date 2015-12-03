@@ -183,6 +183,7 @@ public class BookingCalendar {
 		return dates;
 	}
 	
+	// For Testing purposes
 	public void setBookingDay(int month, int day, int type, int value){
 		capacity.get(0).get(month).get(day).set(type, value);
 	}
