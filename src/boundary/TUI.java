@@ -8,8 +8,8 @@ public class TUI {
 	
 	public void login (){
 		System.out.println("#######################################");
-		System.out.println ("Indtast brugernavn");
-		System.out.println("Indtast Kodeord");
+		System.out.println ("1. Indtast brugernavn");
+		System.out.println("2. Indtast Kodeord");
 		System.out.println("#######################################");
 	}
 
@@ -33,6 +33,7 @@ public class TUI {
 		System.out.println("2. Indtast kundens Navn");
 		System.out.println("3. Fra dato YYYY-MM-DD");
 		System.out.println("4. Til dato YYYY-MM-DD");
+		System.out.println("5. Vælg reserveret grund");
 		System.out.println("");
 		System.out.println("5. Tilbage til hovedmenu");
 		System.out.println("#######################################");
@@ -96,5 +97,6 @@ public class TUI {
 		System.out.println("2. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
+	
 	
 }

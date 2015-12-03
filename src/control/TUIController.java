@@ -71,8 +71,9 @@ public class TUIController {
 					System.out.println("Indtast slut dato:");
 					name = getStringInput();
 					break;
-				case "5" :
-					break whileLoop;
+				case "5" : //Skal rettes til grundtype
+					
+				case "6" : break whileLoop;
 					
 			}
 		}
@@ -179,7 +180,7 @@ public class TUIController {
 		case "1" : 
 			System.out.println("Indtast reservations ID:");
 			resID = getStringInput();
-			// Metode til indtjekning
+			// Metode til indtjekning ud fra reservations ID
 			break;
 		case "2" :
 			System.out.println("Indtast telefonnummer:");
@@ -204,7 +205,7 @@ public class TUIController {
 		case "1" : 
 			System.out.println("Indtast reservations ID:");
 			resID = getStringInput();
-			// Metode til udtjekning
+			// Metode til udtjekning ud fra reservations ID
 			break;
 		case "2" :
 			System.out.println("Indtast telefonnummer:");
@@ -217,5 +218,30 @@ public class TUIController {
 		}
 	}
 	
-	
+	public void login(){
+		TUI.login();
+		String username = null;
+		String password = null;
+		
+		whileLoop:
+		while(true){
+			String input = getStringInput();
+		switch(input){
+		case "1" : 
+			System.out.println("Indtast brugernavnet");
+			username = getStringInput();
+			break;
+		case "2" : 
+			System.out.println("Indtast kodeordet");
+			password = getStringInput();
+			break;
+		}
+		if(username != null && password != null)
+			// if(mainController.checkLogin()) return boolean 
+				break whileLoop;
+			
+			
+		}
+		mainMenuOptions();
+	}
 }
