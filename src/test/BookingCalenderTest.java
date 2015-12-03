@@ -8,13 +8,13 @@ public class BookingCalenderTest {
 	private static BookingCalendar bc = new BookingCalendar();
 
 	public static void main(String[] args){
-		String arrivalDate ="2015-12-25";
-		String departureDate ="2016-01-05";
+		String arrivalDate ="2015-12-30";
+		String departureDate ="2016-01-02";
 		int type = 1;
 
-		ArrayList<String> test = null;
-		ArrayList<String> test1 = null;
-		for(int i=0;i<100+1; i++){
+		ArrayList<String> test = null;;
+		ArrayList<String> test1 = null;;
+		for(int i=0;i<3; i++){
 			test= bc.getOccupiedDays(arrivalDate, departureDate, type );
 			if(test.isEmpty()){
 				test1=bc.setReservation(arrivalDate, departureDate, type, 1);
@@ -22,6 +22,12 @@ public class BookingCalenderTest {
 					System.out.println(test1.get(k));
 				}
 			}
+			if(!test.isEmpty()){
+				for(int j=0; j<test.size();j++){
+					System.out.println(test.get(j));
+				}
+			}
+
 		}
 	}
 }

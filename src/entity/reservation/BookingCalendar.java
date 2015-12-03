@@ -9,8 +9,7 @@ public class BookingCalendar {
 	private static Calendar calendar = new GregorianCalendar();
 	private ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> capacity = new ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>>();
 	private int baseYear = 2015;
-	protected enum Type {Caravan, LargeCaravan, Tent, LuxuryCottage, LuxuryCottagePatio, LargeCottage, MediumCottage, SmallCottage};
-	protected int[] maxCapacities = {100, 100, 100, 68-65, 45-44, 2, 2+30-27, 9-6};
+	protected int[] maxCapacities = {100, 2, 100, 68-65, 45-44, 2, 2+30-27, 9-6};
 
 	public BookingCalendar(){
 		// Populate starting calendar with three years worth of bookings/days/months
@@ -63,13 +62,13 @@ public class BookingCalendar {
 					endDay=current.size();
 				}
 				while(currentDay<endDay){
-					int currentCapacity = current.get(currentDay).get(type);if(currentCapacity+1>maxCapacities[type]){
+					int currentCapacity = current.get(currentDay).get(type);
+					if(currentCapacity+1>maxCapacities[type]){
 						occupiedDates.add(currentYear+baseYear + "-" + (currentMonth+1) + "-"+ (currentDay+1));
 					}
 					//System.out.println("Get after : " + (currentDay+1) + " " + currentCapacity);
 					currentDay++;
 				}
-				currentDay=0;
 			}
 			startMonth=0;
 		}
@@ -118,10 +117,7 @@ public class BookingCalendar {
 				}
 				while(currentDay<endDay){
 					int currentCapacity = current.get(currentDay).get(type);
-					//	if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)<maxCapacities[type]){
 					current.get(currentDay).set(type, currentCapacity+value);
-
-					//	}
 					// Add flag to show high or low season to the String that is added to the ArrayList
 					if ((currentMonth+1==6 && currentDay+1>=12) || (currentMonth+1==8 && currentDay+1<=16) || currentMonth+1==7){
 						result.add(currentYear+baseYear + "-" + (currentMonth+1) + "-"+ (currentDay+1) + "HIGH");
@@ -130,9 +126,7 @@ public class BookingCalendar {
 						result.add(currentYear+baseYear + "-" + (currentMonth+1) + "-"+ (currentDay+1) + "LOW");
 					}
 					currentDay++;
-					//System.out.println("test");
 				}
-				currentDay=0;
 			}
 			startMonth=0;
 		}
