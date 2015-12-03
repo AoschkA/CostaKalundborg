@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import entity.invoice.Invoice;
 import entity.invoice.Prices;
+import entity.invoice.Print;
 import entity.reservation.Reservation;
 
 public class InvoiceLogic {
 	private static ArrayList<Invoice> invoiceList;
 	private static Prices priceList = new Prices();
+	private static Print printer = new Print();
 
 
 	public InvoiceLogic(){
@@ -24,7 +26,7 @@ public class InvoiceLogic {
 			}
 		}
 		Invoice i = new Invoice(targetReservations);
-		generateInvoiceFile(targetReservations);
+		generateInvoiceFile(targetReservations, i.getId());
 		invoiceList.add(i);
 		return i.getId();
 	}
@@ -32,7 +34,7 @@ public class InvoiceLogic {
 	public int makeInvoice(ArrayList<Reservation> reservationList){
 		Invoice i = new Invoice(reservationList);
 		invoiceList.add(i);
-		generateInvoiceFile(reservationList);
+		generateInvoiceFile(reservationList, i.getId());
 		return i.getId();
 	}
 
@@ -51,7 +53,7 @@ public class InvoiceLogic {
 	public ArrayList<Invoice> getInvoiceList() {
 		return invoiceList;
 	}
-	private void generateInvoiceFile(ArrayList<Reservation> reservationList) {
+	private void generateInvoiceFile(ArrayList<Reservation> reservationList, int invoice_id) {
 		ArrayList<String> expenses = new ArrayList<String>();
 		double globalPrice = 0;
 		for (Reservation r: reservationList) {
@@ -117,7 +119,7 @@ public class InvoiceLogic {
 		}
 		expenses.add("----------------");
 		expenses.add("Totalpris for alle udlejninger: "+globalPrice);
-		
+		printer.printInvoice(expenses, invoice_id);
 	}
 	
 	private String getTypeDescribtion(int type){

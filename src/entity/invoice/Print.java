@@ -11,13 +11,16 @@ import entity.reservation.Cottage;
 import entity.reservation.Reservation;
 
 public class Print {
+	private int invoice_id;
 	private ArrayList<String> expenses;
 	
-	public void printInvoice(Invoice invoice) {
+	public void printInvoice(ArrayList<String> expenses, int invoice_id) {
+		this.expenses=expenses;
+		this.invoice_id=invoice_id;
 		writeFile();
 	}
 	private void writeFile() {
-		String dbFile = "Invoices/invoice"+currentInvoice.getId();
+		String dbFile = "Invoices/invoice"+invoice_id;
 		BufferedWriter bw = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(dbFile));
