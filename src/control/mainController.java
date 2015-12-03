@@ -30,10 +30,10 @@ public class mainController {
 		if (name==null) c = customerDB.getCustomer(phonenumber);
 		else customerDB.addCustomer(name, phonenumber);
 		switch (type) {
-		case "tent": reservationLogic.makeTent(phonenumber, false, arrivalDate, departureDate, numChildren, numAdults, numDogs);
+		case "tent": reservationLogic.makeCampsite(phonenumber, false, arrivalDate, departureDate, numChildren, numAdults, numDogs, 0);
 		return true;
-		case "caravan": reservationLogic.makeCaravan(phonenumber, false, arrivalDate, departureDate, numChildren, 
-				numAdults, numDogs, largeCampSite);
+		case "caravan": reservationLogic.makeCampsite(phonenumber, false, arrivalDate, departureDate, numChildren, 
+				numAdults, numDogs, 2);
 		return true;
 		case "cottage": reservationLogic.makeCottage(phonenumber, false, arrivalDate, departureDate, numAdults, cottageType);
 		return true;
@@ -41,15 +41,10 @@ public class mainController {
 		return false;
 	}
 	
-	public void deleteReservation(String phonenumber){
-		reservationLogic.deleteReservation(phonenumber);
+	public void deleteReservation(int reservationID){
+		reservationLogic.deleteReservation(reservationID);
 	}
 	public void changeReservation(String phonenumber, String arrivalDate, String departureDate) {
-		ArrayList<Reservation> r = reservationLogic.getReservation(phonenumber);
+		ArrayList<Reservation> r = reservationLogic.getReservations(phonenumber);
 	}
-	
-	
-	
-	
-
 }

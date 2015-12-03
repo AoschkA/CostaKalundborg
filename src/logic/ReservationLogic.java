@@ -44,6 +44,15 @@ public class ReservationLogic {
 		return output;
 	}
 
+	public Reservation getReservation(int reservationID){
+		for(Reservation r:reservationList){
+			if(r.getId()==reservationID){
+				return r;
+			}
+		}
+		return null;
+	}
+	
 	public ArrayList<Reservation> getReservationList() { return reservationList;}
 
 	public void deleteReservation(int reservationID) {
