@@ -40,11 +40,5 @@ public class Print {
 	private static void printFile(BufferedWriter bw) throws IOException {
 		bw.write(createPrintString());
 	}
-	public static void main(String[] args) {
-		ArrayList<Reservation> r = new ArrayList<Reservation>();
-		r.add(new Cottage("22002200", true, "2016-10-11", "2016-10-17", 2, 3));
-		Invoice i = new Invoice(r);
-		printInvoice(i);
-	}
 
 }

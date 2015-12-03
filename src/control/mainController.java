@@ -44,7 +44,14 @@ public class mainController {
 	public void deleteReservation(int reservationID){
 		reservationLogic.deleteReservation(reservationID);
 	}
-	public void changeReservation(String phonenumber, String arrivalDate, String departureDate) {
-		ArrayList<Reservation> r = reservationLogic.getReservations(phonenumber);
+	public String[][] findReservationID(String phonenumber) {
+		ArrayList<Reservation> reservations = reservationLogic.getReservations(phonenumber);
+		String[][] output = new String[reservations.size()][3];
+		for (int i=0; i<reservations.size(); i++) {
+			output[i][0] = Integer.toString(reservations.get(i).getId());
+			output[i][1] = reservations.get(i).getArrivalDate();
+			output[i][2] = reservations.get(i).getDepartureDate();
+		}
+		return output;
 	}
 }
