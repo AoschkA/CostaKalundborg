@@ -52,7 +52,17 @@ public class ReservationLogic {
 		}
 		return null;
 	}
-	
+
+	public boolean setArrived(int reservationID){
+		for(Reservation r:reservationList){
+			if(r.getId()==reservationID){
+				r.setArrived(true);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public ArrayList<Reservation> getReservationList() { return reservationList;}
 
 	public void deleteReservation(int reservationID) {
@@ -68,19 +78,19 @@ public class ReservationLogic {
 	public ArrayList<String> changeReservation(int reservationID, String newDepartureDate){
 		ArrayList<String> reservedDays = null;
 		Reservation reservation=null;
-		
+
 		for (Reservation r: reservationList) {
 			if (r.getId()==reservationID) {
 				reservation=r;
 				break;
 			}
 		}
-		
+
 		String oldDepartureDate=reservation.getDepartureDate();
 		int type = reservation.getType();
 		int newDepartureDateInt = Integer.parseInt(newDepartureDate.replaceAll("-", ""));
 		int oldDeparturedateInt = Integer.parseInt(reservation.getDepartureDate().replaceAll("-", ""));
-		
+
 		if(newDepartureDateInt < oldDeparturedateInt){
 			bcl.deletePeriod(newDepartureDate, oldDepartureDate, type);
 			reservedDays = reservation.getReservedDays();
