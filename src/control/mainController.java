@@ -20,9 +20,9 @@ public class mainController {
 			
 	}
 	
-	public boolean userExist(String phonenumber) {
-		if (customerDB.getCustomer(phonenumber)==null) return false;
-		else return true;
+	public String userExist(String phonenumber) {
+		if (customerDB.getCustomer(phonenumber).getName()==null) return null;
+		else return customerDB.getCustomer(phonenumber).getName();
 	}
 	public boolean createReservation(String phonenumber, String name, String arrivalDate, String departureDate, 
 			String type, int numChildren, int numAdults, int numDogs, boolean largeCampSite, int cottageType){
