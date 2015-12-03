@@ -34,8 +34,9 @@ public class TUI {
 		System.out.println("3. Fra dato YYYY-MM-DD");
 		System.out.println("4. Til dato YYYY-MM-DD");
 		System.out.println("5. Vælg reserveret grund");
+		System.out.println("6. Vælg type på grunden");
 		System.out.println("");
-		System.out.println("5. Tilbage til hovedmenu");
+		System.out.println("7. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
 	
