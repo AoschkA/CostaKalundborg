@@ -1,14 +1,9 @@
 package entity.login;
 
-
-
-
 public class Customer {
 
-	
-	
-	private String phonenumber=null;
-	private String name=null;
+	private String phonenumber="";
+	private String name="";
 	
 	public Customer (String  name, String phonenumber) {
 		this.name=name; 
@@ -16,7 +11,5 @@ public class Customer {
 	}
 	
 	public String getPhonenumber() {return phonenumber;}
-	public String getName() {if(name != null)return name; else{return null;}}
+	public String getName() {return name;}
 }
-
-

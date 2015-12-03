@@ -9,17 +9,17 @@ import logic.InvoiceLogic;
 import logic.LoginLogic;
 import logic.ReservationLogic;
 
-public class mainController {
+public class MainController {
 	private ReservationLogic reservationLogic = new ReservationLogic();
 	private InvoiceLogic invoiceLogic = new InvoiceLogic();
 	private LoginLogic loginLogic = new LoginLogic();
 	private TUIController tuiController = new TUIController(this);
 	private CustomerDB customerDB = new CustomerDB();
 	
-	public mainController() {
+	public MainController() {
 	}
 	public static void main(String[] args) {
-		mainController mc = new mainController();
+		MainController mc = new MainController();
 		mc.runTUI();
 		
 	}
@@ -28,7 +28,7 @@ public class mainController {
 	}
 	
 	public String userExist(String phonenumber) {
-		if (customerDB.getCustomer(phonenumber).getName()==null) return null;
+		if (customerDB.getCustomer(phonenumber).getName().equals("")) return "";
 		else return customerDB.getCustomer(phonenumber).getName();
 	}
 	public void createUser(String phonenumber, String name) {

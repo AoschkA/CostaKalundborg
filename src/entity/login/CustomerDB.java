@@ -16,9 +16,9 @@ public class CustomerDB {
 		customers.add(new Customer(name, phonenumber));
 	}
 	public Customer getCustomer(String phonenumber){
-		for (Customer c:customers) if(c.getPhonenumber().equals(phonenumber)) return c;
-		return null;
+		for (Customer c:customers) {
+			if(c.getPhonenumber().equals(phonenumber)) return c;
+		}
+		return new Customer("","");
 	}
-	
-	
 }
