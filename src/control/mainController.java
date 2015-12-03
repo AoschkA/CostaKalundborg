@@ -1,5 +1,7 @@
 package control;
 
+import java.util.ArrayList;
+
 import entity.login.Customer;
 import entity.login.CustomerDB;
 import entity.reservation.Reservation;
@@ -39,11 +41,11 @@ public class mainController {
 		return false;
 	}
 	
-	public void deleteReservation(int customerID){
-		reservationLogic.deleteReservation(reservationID);
+	public void deleteReservation(String phonenumber){
+		reservationLogic.deleteReservation(phonenumber);
 	}
-	public void changeReservation(int customerID, String arrivalDate, String departureDate) {
-		Reservation r = reservationLogic.getReservation()
+	public void changeReservation(String phonenumber, String arrivalDate, String departureDate) {
+		ArrayList<Reservation> r = reservationLogic.getReservation(phonenumber);
 	}
 	
 	

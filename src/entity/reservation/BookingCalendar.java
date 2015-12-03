@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class BookingCalendar {
-	//private int january, february, march, april, may, june, july, august, september, october, november, december;
+	// Instantiate attributes
 	private static Calendar calendar = new GregorianCalendar();
 	private static ArrayList<Integer> booking = new ArrayList<Integer>();
 	private static ArrayList<ArrayList<Integer>> day = new ArrayList<ArrayList<Integer>>();
@@ -16,19 +16,12 @@ public class BookingCalendar {
 	protected int[] maxCapacities = {100, 100, 100, 68-65, 45-44, 2, 2+30-27, 9-6};
 
 	public BookingCalendar(){
+		// Populate starting calendar with three years worth of bookings/days/months
 		initializeCalendar();
 	}
 
-	public static void main(String[] args){
-		//		initializeCalendar();
-		//		int year = 2015;
-		//		String fradato = "2016-10-5";
-		//		String tildato = "2016-10-20";
-		//		String[] fradatoint = fradato.split("-");
-		//		String[] tildatoint = tildato.split("-");
-	}
-
 	public ArrayList<String> getOccupiedDays(String arrivalDate, String departureDate, int type ){
+		// Instantiate variables
 		ArrayList<String> occupiedDates = new ArrayList<String>();
 		
 		int[] dates = parseDates(arrivalDate, departureDate);
@@ -41,10 +34,12 @@ public class BookingCalendar {
 		int endDay;
 		int currentDay=0;
 		
+		// Add Year until the requested Year exists in the calendar
 		while(endYear>capacity.size()-1){
 			addYear();
 		}
 
+		// Iterate through days in the period to ensure no day is fully booked for the given type
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
 				if(startMonth==endMonth){
@@ -74,6 +69,7 @@ public class BookingCalendar {
 	}
 
 	public ArrayList<String> setReservation(String arrivalDate, String departureDate, int type, int value){
+		// Instantiate variables
 		ArrayList<String> result = new ArrayList<>();
 		int[] dates = parseDates(arrivalDate, departureDate);
 		int startYear=dates[0]-baseYear;
@@ -84,6 +80,7 @@ public class BookingCalendar {
 		int endDay;
 		int currentDay=0;
 
+		// Increase the booking for the given period by one
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
 				if(startMonth==endMonth){
@@ -103,8 +100,11 @@ public class BookingCalendar {
 				}
 				while(currentDay<endDay){
 					if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)<maxCapacities[type]){
-						capacity.get(currentYear).get(currentMonth).get(currentDay).add(value);
+						int temp = capacity.get(currentYear).get(currentMonth).get(currentDay).get(type);
+						capacity.get(currentYear).get(currentMonth).get(currentDay).set(type, temp+value);
+
 					}
+					// Add flag to show high or low season to the String that is added to the ArrayList
 					if ((currentMonth==6 && currentDay>=12) || (currentMonth==8 && currentDay<=16)){
 						result.add(currentYear + "-" + currentMonth + "-"+ currentDay + "HIGH");
 					}
@@ -115,23 +115,18 @@ public class BookingCalendar {
 				}
 			}
 		}
+		// Return the ArrayList with the period including seasonal attribute
 		return result;
 	}
 
-	// Get the number of days in that month
-	//		int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28
-	//		System.out.println(daysInMonth);
-	//		System.out.println(year);
-	//		calendar = new GregorianCalendar(year, Calendar.FEBRUARY, 1);
-	//		daysInMonth= calendar.getActualMaximum(Calendar.DAY_OF_MONTH);      // 29
-	//		System.out.println(daysInMonth);
-	//}
-
 	private void initializeCalendar(){
+		// Get current year
 		int year = Calendar.getInstance().get(Calendar.YEAR);
+		// Populate the calendar with three years worth of months
 		for(int cap = 0;cap < 3;cap++){
 			for(int total = 0;total < 12;total++){
 				calendar = new GregorianCalendar(year, total, 1);
+				// Find maximum number of days for the current month for given year
 				int daysinMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 				for(int i = 0;i < 9;i++){
 					booking.add(0);
@@ -147,6 +142,7 @@ public class BookingCalendar {
 	}
 
 	private void addYear(){
+		// Add one year to the calendar
 		int year = Calendar.getInstance().get(Calendar.YEAR)+capacity.size()+1;
 		for(int total = 0;total < 12;total++){
 			calendar = new GregorianCalendar(year, total, 1);
@@ -164,6 +160,7 @@ public class BookingCalendar {
 	}
 	
 	private int[] parseDates(String arrivalDate, String departureDate){
+		// Separate the input strings into int values and return int array with these
 		String[] firstDateString = arrivalDate.split("-");
 		String[] lastDateString = departureDate.split("-");
 		int[] dates = new int[6];
