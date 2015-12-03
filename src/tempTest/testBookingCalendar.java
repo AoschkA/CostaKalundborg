@@ -26,9 +26,9 @@ public class testBookingCalendar {
 		bc.setBookingDay(11, 30, 1, 500);
 		assertEquals(500, bc.getBookingDay(11, 30, 1));
 		assertEquals(1, bc.getBookingDay(11, 29, 1));
-		bc.setBookingDay(11, 23, 1, 110);
-		bc.setBookingDay(11, 28, 1, 200);
-		System.out.println(bc.getOccupiedDays("2015-12-20", "2015-12-31", 1).size());
+		bc.setBookingDay(11, 23, 1, 100);
+		bc.setBookingDay(11, 28, 1, 100);
+		System.out.println(bc.getOccupiedDays("2015-12-20", "2015-12-31", 1));
 	}
 
 }
