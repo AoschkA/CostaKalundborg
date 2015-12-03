@@ -20,9 +20,9 @@ public class BookingCalendar {
 	public ArrayList<String> getOccupiedDays(String arrivalDate, String departureDate, int type ){
 		// Instantiate variables
 		ArrayList<String> occupiedDates = new ArrayList<String>();
-		
+
 		int[] dates = parseDates(arrivalDate, departureDate);
-		
+
 		int startYear=dates[0]-baseYear;
 		int startMonth=dates[1]-1;
 		int startDay=dates[2]-1;
@@ -30,34 +30,55 @@ public class BookingCalendar {
 		int endMonth=dates[4]-1;
 		int endDay;
 		int currentDay=0;
-		
+
 		// Add Year until the requested Year exists in the calendar
-//		while(endYear>capacity.size()-1){
-//			addYear();
-//		}
+		//		while(endYear>capacity.size()-1){
+		//			addYear();
+		//		}
 
 		// Iterate through days in the period to ensure no day is fully booked for the given type
+		//		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
+		//			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
+		//				if(startMonth==endMonth){
+		//					currentDay=startDay;
+		//					endDay=dates[5]-1;
+		//				}
+		//				else if(currentMonth==startMonth){
+		//					currentDay=startDay;
+		//					endDay=capacity.get(currentYear).get(currentMonth).size();
+		//				}
+		//				else if (currentMonth==endMonth){
+		//					currentDay=0;
+		//					endDay = dates[5]-1;
+		//				} else {
+		//					currentDay=0;
+		//					endDay=capacity.get(currentYear).get(currentMonth).size();
+		//				}
+		//				while(currentDay<endDay){
+		//					int currentCapacity = capacity.get(currentYear).get(currentMonth).get(currentDay).get(type);
+		//					//System.out.println("Get before: " + (currentDay+1) + " " + currentCapacity);
+		ArrayList<ArrayList<Integer>> start = capacity.get(startYear).get(startMonth);
+		ArrayList<ArrayList<Integer>> end = capacity.get(endYear).get(endMonth);
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
-				if(startMonth==endMonth){
+				ArrayList<ArrayList<Integer>> current = capacity.get(currentYear).get(currentMonth);
+				if(current==start && current==end){
 					currentDay=startDay;
 					endDay=dates[5]-1;
 				}
-				else if(currentMonth==startMonth){
+				else if(current==start){
 					currentDay=startDay;
-					endDay=capacity.get(currentYear).get(currentMonth).size();
+					endDay=current.size();
 				}
-				else if (currentMonth==endMonth){
+				else if (current==end){
 					currentDay=0;
 					endDay = dates[5]-1;
 				} else {
 					currentDay=0;
-					endDay=capacity.get(currentYear).get(currentMonth).size();
+					endDay=current.size();
 				}
 				while(currentDay<endDay){
-					int currentCapacity = capacity.get(currentYear).get(currentMonth).get(currentDay).get(type);
-					//System.out.println("Get before: " + (currentDay+1) + " " + currentCapacity);
-					if(currentCapacity+1>maxCapacities[type]){
+					int currentCapacity = current.get(currentDay).get(type);if(currentCapacity+1>maxCapacities[type]){
 						occupiedDates.add(currentYear+baseYear + "-" + (currentMonth+1) + "-"+ (currentDay+1));
 					}
 					//System.out.println("Get after : " + (currentDay+1) + " " + currentCapacity);
@@ -86,7 +107,7 @@ public class BookingCalendar {
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
 				ArrayList<ArrayList<Integer>> current = capacity.get(currentYear).get(currentMonth);
-				if(current==end){
+				if(current==start && current==end){
 					currentDay=startDay;
 					endDay=dates[5]-1;
 				}
@@ -102,13 +123,13 @@ public class BookingCalendar {
 					endDay=current.size();
 				}
 				while(currentDay<endDay){
-					int currentCapacity = capacity.get(currentYear).get(currentMonth).get(currentDay).get(type);
-				//	if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)<maxCapacities[type]){
-					capacity.get(currentYear).get(currentMonth).get(currentDay).set(type, currentCapacity+value);
+					int currentCapacity = current.get(currentDay).get(type);
+					//	if(capacity.get(currentYear).get(currentMonth).get(currentDay).get(type)<maxCapacities[type]){
+					current.get(currentDay).set(type, currentCapacity+value);
 
-				//	}
+					//	}
 					// Add flag to show high or low season to the String that is added to the ArrayList
-					if ((currentMonth==6 && currentDay>=12) || (currentMonth==8 && currentDay<=16)){
+					if ((currentMonth+1==6 && currentDay+1>=12) || (currentMonth+1==8 && currentDay+1<=16) || currentMonth+1==7){
 						result.add(currentYear+baseYear + "-" + (currentMonth+1) + "-"+ (currentDay+1) + "HIGH");
 					}
 					else {
@@ -174,7 +195,7 @@ public class BookingCalendar {
 		year++;
 		capacity.add(month);
 	}
-	
+
 	private int[] parseDates(String arrivalDate, String departureDate){
 		// Separate the input strings into int values and return int array with these
 		String[] firstDateString = arrivalDate.split("-");
@@ -189,7 +210,7 @@ public class BookingCalendar {
 		}
 		return dates;
 	}
-	
+
 	// For Testing purposes
 	public void setBookingDay(int month, int day, int type, int value){
 		capacity.get(0).get(month).get(day).set(type, value);

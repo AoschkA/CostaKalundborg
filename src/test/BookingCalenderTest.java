@@ -8,8 +8,8 @@ public class BookingCalenderTest {
 	private static BookingCalendar bc = new BookingCalendar();
 
 	public static void main(String[] args){
-		String arrivalDate ="2015-01-29";
-		String departureDate ="2015-02-03";
+		String arrivalDate ="2015-12-25";
+		String departureDate ="2016-01-5";
 		int type = 1;
 
 		ArrayList<String> test = null;;
