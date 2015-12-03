@@ -347,10 +347,13 @@ public class TUIController {
 			break;
 		default : System.out.println("Forkert tal."); break;
 		}
-		if(username != null && password != null)
-			// if(mainController.checkLogin()) return boolean 
+		if(username != null && password != null){
+			 if(mainController.checklogin(username, password)){
 				break whileLoop;
-			
+			 }
+			 else{ System.out.println("Brugeren eksisterer ikke."); }}
+			 else{ System.out.println("Du har glemt at indskrive et brugernavn eller adgangskode.");}
+			 
 			
 		}
 		mainMenuOptions();

@@ -69,5 +69,10 @@ public class mainController {
 		reservationLogic.changeReservation(reservationID, newDepartureDate);
 	}
 	
+	public boolean checklogin(String username, String password){
+		//Tjekker på login, lavet til TUI controller.
+		return loginLogic.validateLogin(username, password);
+	}
+	
 	
 }
