@@ -22,10 +22,17 @@ public class TUI {
 		System.out.println("3. Ændre reservation");
 		System.out.println("4. Tjek ind");
 		System.out.println("5. Tjek ud");
+		System.out.println("6. Vis Reservation(udfra reservations id)");
 		System.out.println("#######################################");
-		
 	}
-	
+	public void showReservation () {
+		System.out.println("#######################################");
+		System.out.println("Udskriv Reservation");
+		System.out.println("1. Vis reservation ud fra reservations id");
+		System.out.println("2. Vis reservationer ud fra kundenummer");
+		System.out.println("3. Tilbage til hovedmenu");
+		System.out.println("#######################################");
+	}
 	public void newReservation (){
 		System.out.println("#######################################");
 		System.out.println("Ny Reservation");

@@ -3,6 +3,7 @@ package control;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import boundary.TUI;
 import entity.reservation.Reservation;
@@ -38,10 +39,39 @@ public class TUIController {
 		case "3" : changeReservation(); break;
 		case "4" : checkIn();			break;
 		case "5" : checkOut();			break;
+		case "6" : showReservation();   break;
 		default : System.out.println("Forkert tal."); break;
 		}
 
 		return input;
+	}
+	
+	public void showReservation(){
+		TUI.showReservation();
+		String resID = null;
+		String phoneNr = null;
+		ArrayList<Reservation> customerReservations;
+		Reservation customerReservation;
+		whileLoop:
+			while(true){
+				String input = getStringInput();
+				switch(input){
+				case "1" : 
+					System.out.println("Indtast reservations ID:");
+					resID = getStringInput();
+					mainController.g
+					// Metode til udtjekning ud fra reservations ID
+					break whileLoop;
+				case "2" :
+					System.out.println("Indtast telefonnummer:");
+					phoneNr = getStringInput();
+					// Metode til at finde ID ud fra tlfnr
+					break whileLoop;
+				case "3" :
+					break whileLoop;
+				default : System.out.println("Forkert tal."); break;
+				}
+			}
 	}
 
 	public void newReservation(){		
@@ -50,7 +80,6 @@ public class TUIController {
 		String startdate = null;
 		String enddate = null;
 		int groundtype = 0;
-		String renttypestring;
 		int[] renttypeinfo = null;
 		int type = 0;
 
@@ -84,15 +113,11 @@ public class TUIController {
 					System.out.println("Indtast grundtype, (1) for Cottage (2) for Campsite. ");
 					groundtype = Integer.parseInt(getStringInput());
 
-					if(groundtype != 1 || groundtype != 2){
+					if(groundtype != 1 && groundtype != 2){
 						System.out.println("Forkert input.");
 					}
 					else
 					{
-//						if(groundtype == 1)
-//							renttypestring = "cottage";
-//						else
-//							renttypestring = "campsite";
 						renttypeinfo = infoFromRentType(groundtype);
 					}					
 					break;
@@ -109,7 +134,7 @@ public class TUIController {
 
 		if (phone!=null && name!=null && startdate!=null && enddate!=null && renttypeinfo != null){
 			mainController.createReservation(phone, startdate, enddate, renttypeinfo[0] ,renttypeinfo[1], renttypeinfo[2], renttypeinfo[3], type);
-
+			System.out.println("Reservation Oprettet.");
 		} else {
 			System.out.println("Fejl");
 		}
@@ -229,7 +254,6 @@ public class TUIController {
 				default : System.out.println("Forkert tal."); break;
 				}
 			}
-
 	}
 
 	public void changeReservationInner(String resID){

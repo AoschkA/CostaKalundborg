@@ -2,7 +2,6 @@ package control;
 
 import java.util.ArrayList;
 
-import entity.login.Customer;
 import entity.login.CustomerDB;
 import entity.reservation.Reservation;
 import logic.InvoiceLogic;
@@ -24,7 +23,9 @@ public class MainController {
 		
 	}
 	public void runTUI() {
-		tuiController.mainMenuOptions();
+		while(true){
+			tuiController.mainMenuOptions();
+		}
 	}
 	
 	public String userExist(String phonenumber) {
