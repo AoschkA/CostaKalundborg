@@ -51,7 +51,7 @@ public class TUIController {
 		String enddate = null;
 		int groundtype = 0;
 		String renttypestring;
-		int[] renttypeinfo;
+		int[] renttypeinfo = null;
 		
 		whileLoop:
 		while(phone==null && name==null && startdate==null && enddate==null){
@@ -112,11 +112,11 @@ public class TUIController {
 					
 			}
 		}
-		if (phone!=null && name!=null && startdate!=null && enddate!=null &&){
-			// kald i main
+		if (phone!=null && name!=null && startdate!=null && enddate!=null && renttypeinfo.length != 0){
+			mainController.createReservation(phone, startdate, enddate, renttypeinfo[0] ,renttypeinfo[1], renttypeinfo[2], renttypeinfo[3], renttpestring);
 		
 		} else {
-		
+		System.out.println("Fejl");
 		}
 		
 	}
