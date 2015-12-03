@@ -9,7 +9,7 @@ public class BookingCalenderTest {
 
 	public static void main(String[] args){
 		String arrivalDate ="2015-12-25";
-		String departureDate ="2016-01-5";
+		String departureDate ="2016-01-05";
 		int type = 1;
 
 		ArrayList<String> test = null;;

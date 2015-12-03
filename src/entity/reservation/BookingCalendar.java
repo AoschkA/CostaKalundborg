@@ -36,27 +36,6 @@ public class BookingCalendar {
 		//			addYear();
 		//		}
 
-		// Iterate through days in the period to ensure no day is fully booked for the given type
-		//		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
-		//			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
-		//				if(startMonth==endMonth){
-		//					currentDay=startDay;
-		//					endDay=dates[5]-1;
-		//				}
-		//				else if(currentMonth==startMonth){
-		//					currentDay=startDay;
-		//					endDay=capacity.get(currentYear).get(currentMonth).size();
-		//				}
-		//				else if (currentMonth==endMonth){
-		//					currentDay=0;
-		//					endDay = dates[5]-1;
-		//				} else {
-		//					currentDay=0;
-		//					endDay=capacity.get(currentYear).get(currentMonth).size();
-		//				}
-		//				while(currentDay<endDay){
-		//					int currentCapacity = capacity.get(currentYear).get(currentMonth).get(currentDay).get(type);
-		//					//System.out.println("Get before: " + (currentDay+1) + " " + currentCapacity);
 		ArrayList<ArrayList<Integer>> start = capacity.get(startYear).get(startMonth);
 		ArrayList<ArrayList<Integer>> end = capacity.get(endYear).get(endMonth);
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
@@ -85,6 +64,8 @@ public class BookingCalendar {
 					currentDay++;
 				}
 			}
+			startMonth=0;
+			currentDay=0;
 		}
 		return occupiedDates;
 	}
@@ -100,11 +81,12 @@ public class BookingCalendar {
 		int endMonth=dates[4]-1;
 		int endDay;
 		int currentDay=0;
-
+System.out.println(startYear + " " + endYear);
 		// Increase the booking for the given period by one
 		ArrayList<ArrayList<Integer>> start = capacity.get(startYear).get(startMonth);
 		ArrayList<ArrayList<Integer>> end = capacity.get(endYear).get(endMonth);
 		for(int currentYear=startYear; currentYear<=endYear; currentYear++){
+			System.out.println(startYear + " " + startMonth);
 			for(int currentMonth=startMonth; currentMonth<=endMonth; currentMonth++){
 				ArrayList<ArrayList<Integer>> current = capacity.get(currentYear).get(currentMonth);
 				if(current==start && current==end){
@@ -139,6 +121,8 @@ public class BookingCalendar {
 					//System.out.println("test");
 				}
 			}
+			startMonth=0;
+			currentDay=0;
 		}
 		// Return the ArrayList with the period including seasonal attribute
 		return result;
