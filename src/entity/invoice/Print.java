@@ -11,13 +11,12 @@ import entity.reservation.Cottage;
 import entity.reservation.Reservation;
 
 public class Print {
-	private static Invoice currentInvoice;
+	private ArrayList<String> expenses;
 	
-	public static void printInvoice(Invoice invoice) {
-		currentInvoice=invoice;
+	public void printInvoice(Invoice invoice) {
 		writeFile();
 	}
-	private static void writeFile() {
+	private void writeFile() {
 		String dbFile = "Invoices/invoice"+currentInvoice.getId();
 		BufferedWriter bw = null;
 		try {
@@ -29,16 +28,11 @@ public class Print {
 			if (bw != null) try {bw.close();} catch (IOException e) {e.printStackTrace();}
 		}
 	}
-	private static String createPrintString() {
-		String finalprint = "Fakture nummer: "+currentInvoice.getId()+"\n"+"---------------------- \n";
-		for (Reservation r: currentInvoice.getReservationList()){
-			finalprint += "Kunde: "+r.getCustomerID()+"\n"+
-						"Ankomst dato: "+r.getArrivalDate()+"\t"+"Afrejse dato: "+r.getDepartureDate()+"\n";
+	
+	private void printFile(BufferedWriter bw) throws IOException {
+		for (String expense : expenses) {
+			bw.write(expense);
 		}
-		return finalprint;
-	}
-	private static void printFile(BufferedWriter bw) throws IOException {
-		bw.write(createPrintString());
 	}
 
 }

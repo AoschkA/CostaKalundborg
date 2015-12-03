@@ -8,7 +8,7 @@ public class Prices {
 	private static double[] cottageTypeOne = {790, 890}; //Luksus hytte - nr. 65 – 68: 4-6 personers hytte
 	private static double[] cottageTypeTwo = {810, 910}; //Luksus hytte - nr. 44 – 45: 4-6 personers hytte
 	private static double[] cottageTypeThree = {700, 800}; //Hytte nr. 40 og 41: 4 personers hytte
-	private static double[] cottageTypeFour = {380, 410}; //Hytte nr. 10, 11 og 27 - 30: 2 personers hytte: 2 personers hytte
+	private static double[] cottageTypeFour = {380, 410}; //Hytte nr. 10, 11 og 27 - 30: 2 personers hytte
 	private static double[] cottageTypeFive = {415, 450}; // Hytte nr. 6 - 9
 	private static double[] adults = {82, 87}; // personer over 12 år
 	private static double[] children = {42, 49}; // børn 0-11 år 
