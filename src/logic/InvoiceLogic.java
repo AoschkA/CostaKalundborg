@@ -68,7 +68,6 @@ public class InvoiceLogic {
 			int season=0;
 			boolean highseasonUsed = false;
 			int type = r.getType();
-			expenses.add("--------------");
 			for (String s: r.getReservedDays()){
 				if (s.endsWith("LOW")) season=0; 
 				else {season=1; highseasonUsed=true;}
@@ -92,6 +91,7 @@ public class InvoiceLogic {
 			if (type==0) areaPrice=getPriceOfIndex(0, season);
 			else if (type==1) areaPrice=getPriceOfIndex(1, season);
 			expenses.add("Udlejning "+Integer.toString(r.getId()));
+			expenses.add("--------------");
 			expenses.add("Kunde: "+r.getCustomerID());
 			expenses.add("Ankomst dato: "+r.getArrivalDate()+"\t Afrejse dato: "+r.getDepartureDate());
 			expenses.add("--------------\n");
@@ -113,11 +113,11 @@ public class InvoiceLogic {
 				expenses.add("Strøm: "+power);
 				totalPrice = cottagePrice+power;
 			}
+			expenses.add("--------------");
 			expenses.add("Total for udlejning: "+totalPrice);
 			globalPrice+=totalPrice;
-			expenses.add("\n--------------\n");
 		}
-		expenses.add("----------------");
+		expenses.add("--------------");
 		expenses.add("Totalpris for alle udlejninger: "+globalPrice);
 		printer.printInvoice(expenses, invoice_id);
 	}
