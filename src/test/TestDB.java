@@ -1,4 +1,4 @@
-package testtest;
+package test;
 
 import static org.junit.Assert.*;
 import entity.login.CustomerDB;
