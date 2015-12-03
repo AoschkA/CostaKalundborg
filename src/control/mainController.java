@@ -17,7 +17,14 @@ public class mainController {
 	private CustomerDB customerDB = new CustomerDB();
 	
 	public mainController() {
-			
+	}
+	public static void main(String[] args) {
+		mainController mc = new mainController();
+		mc.runTUI();
+		
+	}
+	public void runTUI() {
+		tuiController.mainMenuOptions();
 	}
 	
 	public String userExist(String phonenumber) {

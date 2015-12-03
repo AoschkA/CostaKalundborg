@@ -7,8 +7,8 @@ public class Customer {
 
 	
 	
-	private String phonenumber;
-	private String name;
+	private String phonenumber=null;
+	private String name=null;
 	
 	public Customer (String  name, String phonenumber) {
 		this.name=name; 
@@ -16,7 +16,7 @@ public class Customer {
 	}
 	
 	public String getPhonenumber() {return phonenumber;}
-	public String getName() {return name;}
+	public String getName() {if(name != null)return name; else{return null;}}
 }
 
 
