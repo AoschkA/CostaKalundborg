@@ -38,6 +38,7 @@ public class TUIController {
 			case "3" : changeReservation(); break;
 			case "4" : checkIn();			break;
 			case "5" : checkOut();			break;
+			default : System.out.println("Forkert tal."); break;
 		}
 		
 		return input;
@@ -48,6 +49,9 @@ public class TUIController {
 		String name = null;
 		String startdate = null;
 		String enddate = null;
+		int groundtype = 0;
+		String renttypestring;
+		int[] renttypeinfo;
 		
 		whileLoop:
 		while(phone==null && name==null && startdate==null && enddate==null){
@@ -58,13 +62,22 @@ public class TUIController {
 				case "1" : 
 					System.out.println("Indtast telefon:");
 					phone = getStringInput();
-					if(mainController.userExist(phone))
-						
+					
+					if(mainController.userExist(phone) != null){
+						name = mainController.userExist(phone);	
+						System.out.println("Navnet " + name + " eksisterer i systemet, indtastning af navn er unødvendigt.");
+					}
 						
 					break;
 				case "2" :
+					if(name == null){
 					System.out.println("Indtast navn:");
 					name = getStringInput();
+					}
+					if(name != null)
+					{
+						System.out.println("Navnet " + name + " er allerede registreret.");
+					}
 					break;
 				case "3" :
 					System.out.println("Indtast start dato:");
@@ -74,13 +87,32 @@ public class TUIController {
 					System.out.println("Indtast slut dato:");
 					enddate = getStringInput();
 					break;
-				case "5" : //Skal rettes til grundtype
+				case "5" : 
+					System.out.println("Indtast grundtype, (1) for Cottage (2) for Campsite. ");
+					groundtype = Integer.parseInt(getStringInput());
+					
+					if(groundtype != 1 || groundtype != 2){
+						System.out.println("Forkert input.");
+					}
+					else
+					{
+						if(groundtype == 1)
+							renttypestring = "cottage";
+						else
+							renttypestring = "campsite";
+						
+					renttypeinfo = infoFromRentType(groundtype);
+					}					
+					break;
+					
+					
 					
 				case "6" : break whileLoop;
+				default : System.out.println("Forkert tal."); break;
 					
 			}
 		}
-		if (phone!=null && name!=null && startdate!=null && enddate!=null){
+		if (phone!=null && name!=null && startdate!=null && enddate!=null &&){
 			// kald i main
 		
 		} else {
@@ -90,7 +122,57 @@ public class TUIController {
 	}
 	
 	//Finder ud af hvad for noget info der skal bruges ud fra typen af grund. 
-	public void infoFromRentType()
+	public int[] infoFromRentType(int renttype){
+		int[] renttypeinfo = new int[4];
+		renttypeinfo[0] = 0;
+		renttypeinfo[1] = 0;
+		renttypeinfo[2] = 0;
+		renttypeinfo[3] = 0;
+		
+		
+		if(renttype == 1){
+			TUI.CottageInfo();
+			String input = getStringInput();
+			
+			innerWhileLoop:
+			while(renttypeinfo[0] == 0){
+			switch (input){
+				case "1" : 
+					System.out.println("Indtast antal personer:");
+					renttypeinfo[0] = Integer.parseInt(getStringInput());
+					break;
+				case "2" :
+					break innerWhileLoop;
+				default: System.out.println("Forkert tal");
+				}
+			}
+		}
+		
+		if(renttype == 2){
+			TUI.CampSiteInfo();
+			String input = getStringInput();
+			
+			innerWhileLoop:
+			while(true){
+				switch (input){
+				case "1" :
+					System.out.println("Indtast antal voksne:");
+					renttypeinfo[2] = Integer.parseInt(getStringInput());
+				case "2" :
+					System.out.println("Indtast eventuelle antal børn: ");
+					renttypeinfo[1] = Integer.parseInt(getStringInput());
+				case "3" :
+					System.out.println("Indtast eventuelle antal hunde:");
+					renttypeinfo[3] = Integer.parseInt(getStringInput());
+				case "4" : 
+					break innerWhileLoop;
+				default : System.out.println("Forkert tal");
+				}
+			}	
+		}
+		return renttypeinfo;
+	}
+	
 	
 	public void deleteReservation(){
 		TUI.deleteReservation();
@@ -124,6 +206,7 @@ public class TUIController {
 			break;
 		case "3" :
 			break whileLoop;
+		default : System.out.println("Forkert tal."); break;
 		}
 		}
 	}
@@ -149,6 +232,7 @@ public class TUIController {
 			break;
 		case "3" :
 			break whileLoop;
+		default : System.out.println("Forkert tal."); break;
 		}
 		}
 		
@@ -176,6 +260,7 @@ public class TUIController {
 			break;
 		case "3" : 
 			break whileLoop;
+		default : System.out.println("Forkert tal."); break;
 			
 		}
 		}
@@ -206,6 +291,7 @@ public class TUIController {
 			break;
 		case "3" :
 			break whileLoop;
+		default : System.out.println("Forkert tal."); break;
 		}
 		}
 	}
@@ -231,6 +317,7 @@ public class TUIController {
 			break;
 		case "3" :
 			break whileLoop;
+		default : System.out.println("Forkert tal."); break;
 		}
 		}
 	}
@@ -252,6 +339,7 @@ public class TUIController {
 			System.out.println("Indtast kodeordet");
 			password = getStringInput();
 			break;
+		default : System.out.println("Forkert tal."); break;
 		}
 		if(username != null && password != null)
 			// if(mainController.checkLogin()) return boolean 

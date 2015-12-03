@@ -98,5 +98,25 @@ public class TUI {
 		System.out.println("#######################################");
 	}
 	
+	public void CottageInfo(){
+		System.out.println("#######################################");
+		System.out.println("Information for for Cottage:");
+		System.out.println("1. Indtast antal personer");
+		System.out.println("");
+		System.out.println("2. Tilbage");
+		System.out.println("#######################################");
+	}
+	
+	public void CampSiteInfo(){
+		System.out.println("#######################################");
+		System.out.println("Tjek Ud");
+		System.out.println("1. Indtast antal børn");
+		System.out.println("2. Indtast antal voksne");
+		System.out.println("3. Indtast antal eventuelle hunde");
+		System.out.println("");
+		System.out.println("4. Gem og Tilbage");
+		System.out.println("#######################################");
+	}
+	
 	
 }
