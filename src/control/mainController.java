@@ -69,6 +69,9 @@ public class mainController {
 		}
 		invoiceLogic.makeInvoice(targetReservations);
 	}
+	public void changeReservation(int reservationID, String newDepartureDate) {
+		reservationLogic.changeReservation(reservationID, newDepartureDate);
+	}
 	
 	
 }

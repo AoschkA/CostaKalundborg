@@ -3,10 +3,12 @@ package logic;
 import java.util.ArrayList;
 
 import entity.invoice.Invoice;
+import entity.invoice.Prices;
 import entity.reservation.Reservation;
 
 public class InvoiceLogic {
 	private static ArrayList<Invoice> invoiceList;
+	private static Prices priceList = new Prices();
 	
 	
 	public InvoiceLogic(){
@@ -47,7 +49,19 @@ public class InvoiceLogic {
 	public ArrayList<Invoice> getInvoiceList() {
 		return invoiceList;
 	}
-	
+	public double getTotalCost(ArrayList<Reservation> reservationList) {
+		for (Reservation r: reservationList) {
+			int type = r.getType();
+			for (String s: r.getReservedDays()){
+				if (s.endsWith("LOW")) {
+					
+				}
+				else {
+					
+				}
+			}
+		}
+	}
 	
 	
 	
