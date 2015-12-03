@@ -20,8 +20,10 @@ public class ReservationLogicTest {
 		int numDogs = 1;
 		int type = 1;
 
+		//ArrayList<String> result1 = rl.makeCampsite(customerID, arrived, arrivalDate, departureDate, numChildren, numAdults, numDogs, type);
+
 		ArrayList<String> result = rl.makeCampsite(customerID, arrived, arrivalDate, departureDate, numChildren, numAdults, numDogs, type);
-		if(!result.isEmpty()){
+				if(result!=null){
 			for(int i=0; i<result.size();i++){
 				System.out.println("Reserved days: " + result.get(i) );
 			}

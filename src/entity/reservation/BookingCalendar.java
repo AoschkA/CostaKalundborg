@@ -9,7 +9,7 @@ public class BookingCalendar {
 	private static Calendar calendar = new GregorianCalendar();
 	private ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> capacity = new ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>>();
 	private int baseYear = 2015;
-	protected int[] maxCapacities = {100, 2, 100, 68-65, 45-44, 2, 2+30-27, 9-6};
+	protected int[] maxCapacities = {100, 1, 100, 68-65, 45-44, 2, 2+30-27, 9-6};
 
 	public BookingCalendar(){
 		// Populate starting calendar with three years worth of bookings/days/months
