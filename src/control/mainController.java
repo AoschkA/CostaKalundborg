@@ -54,4 +54,21 @@ public class mainController {
 		}
 		return output;
 	}
+	
+	public void checkIn(int reservationID) {
+		reservationLogic.getReservation(reservationID).setArrived(true);
+	}
+	
+	public void checkOut(String phonenumber) {
+		ArrayList<Reservation> targetReservations = new ArrayList<Reservation>();
+		for (Reservation r: reservationLogic.getReservations(phonenumber)) {
+			if (r.isArrived()) {
+				targetReservations.add(r);
+				reservationLogic.deleteReservation(r.getId());
+			}
+		}
+		invoiceLogic.makeInvoice(targetReservations);
+	}
+	
+	
 }
