@@ -7,9 +7,6 @@ import java.util.GregorianCalendar;
 public class BookingCalendar {
 	// Instantiate attributes
 	private static Calendar calendar = new GregorianCalendar();
-	private static ArrayList<Integer> booking = new ArrayList<Integer>();
-	private static ArrayList<ArrayList<Integer>> day = new ArrayList<ArrayList<Integer>>();
-	private static ArrayList<ArrayList<ArrayList<Integer>>> month = new ArrayList<ArrayList<ArrayList<Integer>>>();
 	private static ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> capacity = new ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>>();
 	private int baseYear = 2015;
 	protected enum Type {Caravan, LargeCaravan, Tent, LuxuryCottage, LuxuryCottagePatio, LargeCottage, MediumCottage, SmallCottage};
@@ -120,17 +117,23 @@ public class BookingCalendar {
 	}
 
 	private void initializeCalendar(){
+		ArrayList<Integer> booking;
+		ArrayList<ArrayList<Integer>> day;
+		ArrayList<ArrayList<ArrayList<Integer>>> month;
 		// Get current year
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		// Populate the calendar with three years worth of months
 		for(int cap = 0;cap < 3;cap++){
+			month = new ArrayList<ArrayList<ArrayList<Integer>>>();
 			for(int total = 0;total < 12;total++){
 				calendar = new GregorianCalendar(year, total, 1);
 				// Find maximum number of days for the current month for given year
 				int daysinMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+				booking = new ArrayList<Integer>();
 				for(int i = 0;i < 9;i++){
 					booking.add(0);
 				}
+				day = new ArrayList<ArrayList<Integer>>();
 				for(int i = 0;i < daysinMonth;i++){
 					day.add(booking);
 				}
@@ -142,14 +145,20 @@ public class BookingCalendar {
 	}
 
 	private void addYear(){
+		ArrayList<Integer> booking;
+		ArrayList<ArrayList<Integer>> day;
+		ArrayList<ArrayList<ArrayList<Integer>>> month = null;
 		// Add one year to the calendar
 		int year = Calendar.getInstance().get(Calendar.YEAR)+capacity.size()+1;
 		for(int total = 0;total < 12;total++){
+			month = new ArrayList<ArrayList<ArrayList<Integer>>>();
 			calendar = new GregorianCalendar(year, total, 1);
 			int daysinMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+			booking = new ArrayList<Integer>();
 			for(int i = 0;i < 8;i++){
 				booking.add(0);
 			}
+			day = new ArrayList<ArrayList<Integer>>();
 			for(int i = 0;i < daysinMonth;i++){
 				day.add(booking);
 			}
