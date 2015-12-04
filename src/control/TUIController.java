@@ -172,13 +172,13 @@ public class TUIController {
 	}
 
 	public void deleteReservation(){
-		TUI.deleteReservation();
 		String resID = null;
 		String phoneNr = null;
 		ArrayList<Reservation> resInfo = null;
 
 		whileLoop:
 			while(true){
+				TUI.deleteReservation();
 				String input = getStringInput();
 				switch(input){
 				case "1" : 
@@ -207,12 +207,12 @@ public class TUIController {
 	}
 
 	public void changeReservation(){
-		TUI.changeReservation();
 		String resID = null;
 		String phoneNr = null;
 
 		whileLoop:
 			while(true){
+				TUI.changeReservation();
 				String input = getStringInput();
 				switch(input){
 				case "1" : 
@@ -233,7 +233,6 @@ public class TUIController {
 	}
 
 	public void changeReservationInner(String resID){
-		TUI.reservationID();
 		System.out.println("Ændrer for: " + resID);
 		String newDepartureDate;
 
@@ -241,16 +240,16 @@ public class TUIController {
 		newDepartureDate = getStringInput();
 		String oldDepartureDate = mainController.findReservation(Integer.parseInt(resID)).getDepartureDate();
 		mainController.changeReservation(Integer.parseInt(resID), newDepartureDate);
-		System.out.println("Reservations dato ændret fra dato "+oldDepartureDate+"\n, til dato "+newDepartureDate);
+		System.out.println("Reservationens afrejse dato ændret \n fra "+oldDepartureDate+"\n til "+newDepartureDate);
 	}
 
 	public void checkIn(){
-		TUI.checkIn();
 		String resID = null;
 		String phoneNr = null;
 
 		whileLoop:
 			while(true){
+				TUI.checkIn();
 				String input = getStringInput();
 				switch(input){
 				case "1" : 
@@ -271,12 +270,12 @@ public class TUIController {
 	}
 
 	public void checkOut(){
-		TUI.checkOut();
 		String resID = null;
 		String phoneNr = null;
 
 		whileLoop:
 			while(true){
+				TUI.checkOut();
 				String input = getStringInput();
 				switch(input){
 				case "1" : 
@@ -292,12 +291,12 @@ public class TUIController {
 	}
 
 	public void login(){
-		TUI.login();
 		String username = null;
 		String password = null;
 
 		whileLoop:
 			while(true){
+				TUI.login();        
 				String input = getStringInput();
 				switch(input){
 				case "1" : 
