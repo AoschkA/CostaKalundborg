@@ -31,9 +31,9 @@ public class BookingCalendar {
 		int currentDay=0;
 		int currentEndMonth = 0;
 		// Add Year until the requested Year exists in the calendar
-		//		while(endYear>capacity.size()-1){
-		//			addYear();
-		//		}
+		while(endYear>capacity.size()-1){
+			addYear();
+		}
 
 		ArrayList<ArrayList<Integer>> start = capacity.get(startYear).get(startMonth);
 		ArrayList<ArrayList<Integer>> end = capacity.get(endYear).get(endMonth);
@@ -178,9 +178,9 @@ public class BookingCalendar {
 			}
 			day = new ArrayList<ArrayList<Integer>>();
 			for(int i = 0;i < daysinMonth;i++){
-				day.add(booking);
+				day.add((ArrayList<Integer>) booking.clone());
 			}
-			month.add(day);
+			month.add((ArrayList<ArrayList<Integer>>) day.clone());
 		}
 		year++;
 		capacity.add(month);
