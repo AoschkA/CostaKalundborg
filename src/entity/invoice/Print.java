@@ -13,7 +13,7 @@ import entity.reservation.Reservation;
 public class Print {
 	private int invoice_id;
 	private ArrayList<String> expenses;
-	
+
 	public void printInvoice(ArrayList<String> expenses, int invoice_id) {
 		this.expenses=expenses;
 		this.invoice_id=invoice_id;
@@ -31,7 +31,7 @@ public class Print {
 			if (bw != null) try {bw.close();} catch (IOException e) {e.printStackTrace();}
 		}
 	}
-	
+
 	private void printFile(BufferedWriter bw) throws IOException {
 		for (String expense : expenses) {
 			bw.write(expense+"\n");

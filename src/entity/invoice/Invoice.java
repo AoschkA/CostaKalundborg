@@ -8,7 +8,7 @@ public class Invoice {
 	private static int idCounter=0;
 	private int id;
 	private ArrayList<Reservation> reservationList;
-	
+
 	public Invoice(ArrayList<Reservation> reservationList){
 		id = idCounter++;
 		this.reservationList = reservationList;
@@ -29,7 +29,7 @@ public class Invoice {
 	public void setReservationList(ArrayList<Reservation> reservationList) {
 		this.reservationList = reservationList;
 	}
-	
-	
+
+
 
 }

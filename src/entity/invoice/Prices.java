@@ -15,7 +15,7 @@ public class Prices {
 	private static double dogs = 10; // ikke tilladt i hytter
 	private static double power = 3.75; // pris pr KWh: 16 Amp
 	private static double extraPerson = 100; // pr. ekstra person i luksushytter
-	
+
 	public Prices() {}
 
 	public static double[] getCaravanSmall() {
@@ -65,6 +65,6 @@ public class Prices {
 	public static double getExtraPerson() {
 		return extraPerson;
 	}
-	
-	
+
+
 }

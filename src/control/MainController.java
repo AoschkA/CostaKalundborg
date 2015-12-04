@@ -14,20 +14,20 @@ public class MainController {
 	private LoginLogic loginLogic = new LoginLogic();
 	private TUIController tuiController = new TUIController(this);
 	private CustomerDB customerDB = new CustomerDB();
-	
+
 	public MainController() {
 	}
 	public static void main(String[] args) {
 		MainController mc = new MainController();
 		mc.runTUI();
-		
+
 	}
 	public void runTUI() {
 		while(true){
 			tuiController.mainMenuOptions();
 		}
 	}
-	
+
 	public String userExist(String phonenumber) {
 		if (customerDB.getCustomer(phonenumber).getName().equals("")) return "";
 		else return customerDB.getCustomer(phonenumber).getName();
@@ -44,7 +44,7 @@ public class MainController {
 			reservationLogic.makeCottage(phonenumber, false, arrivalDate, departureDate, persons, type);
 		return true;
 	}
-	
+
 	public void deleteReservation(int reservationID){
 		reservationLogic.deleteReservation(reservationID);
 	}
@@ -52,15 +52,15 @@ public class MainController {
 		ArrayList<Reservation> reservations = reservationLogic.getReservations(phonenumber);
 		return reservations;
 	}
-	
+
 	public Reservation findReservation(int id){
 		return reservationLogic.getReservation(id);
 	}
-	
+
 	public void checkIn(int reservationID) {
 		reservationLogic.getReservation(reservationID).setArrived(true);
 	}
-	
+
 	public void checkOut(String phonenumber) {
 		ArrayList<Reservation> targetReservations = new ArrayList<Reservation>();
 		for (Reservation r: reservationLogic.getReservations(phonenumber)) {
@@ -74,11 +74,11 @@ public class MainController {
 	public void changeReservation(int reservationID, String newDepartureDate) {
 		reservationLogic.changeReservation(reservationID, newDepartureDate);
 	}
-	
+
 	public boolean checklogin(String username, String password){
 		//Tjekker på login, lavet til TUI controller.
 		return loginLogic.validateLogin(username, password);
 	}
-	
-	
+
+
 }
