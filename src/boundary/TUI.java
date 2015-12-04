@@ -3,9 +3,9 @@ package boundary;
 public class TUI {
 
 	public TUI () {
-		
+
 	}
-	
+
 	public void login (){
 		System.out.println("#######################################");
 		System.out.println ("1. Indtast brugernavn");
@@ -40,7 +40,7 @@ public class TUI {
 		System.out.println("2. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void deleteReservation(){
 		System.out.println("#######################################");
 		System.out.println("Slet Reservation");
@@ -50,7 +50,7 @@ public class TUI {
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void changeReservation(){
 		System.out.println("#######################################");
 		System.out.println("Ændre Reservation");
@@ -60,7 +60,7 @@ public class TUI {
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void reservationID (){
 		System.out.println("#######################################");
 		System.out.println("Reservation ID");
@@ -70,7 +70,7 @@ public class TUI {
 		System.out.println("3. Fortryd og tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void checkIn (){
 		System.out.println("#######################################");
 		System.out.println("Tjek Ind");
@@ -80,7 +80,7 @@ public class TUI {
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void checkOut (){
 		System.out.println("#######################################");
 		System.out.println("Tjek Ud");
@@ -89,7 +89,7 @@ public class TUI {
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void print (){
 		System.out.println("#######################################");
 		System.out.println("Print kvittering");
@@ -98,7 +98,7 @@ public class TUI {
 		System.out.println("2. Tilbage til hovedmenu");
 		System.out.println("#######################################");
 	}
-	
+
 	public void CottageInfo(){
 		System.out.println("#######################################");
 		System.out.println("Information for for Cottage:");
@@ -107,7 +107,7 @@ public class TUI {
 		System.out.println("2. Tilbage");
 		System.out.println("#######################################");
 	}
-	
+
 	public void CampSiteInfo(){
 		System.out.println("#######################################");
 		System.out.println("Tjek Ud");
@@ -118,6 +118,6 @@ public class TUI {
 		System.out.println("4. Gem og Tilbage");
 		System.out.println("#######################################");
 	}
-	
-	
+
+
 }

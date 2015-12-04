@@ -12,7 +12,7 @@ public abstract class Reservation {
 	private String arrivalDate;
 	private String departureDate;
 	private int powerConsumption;
-	
+
 	public Reservation(ArrayList<String> reservedDays, String customerID, boolean arrived, String arrivalDate, String departureDate, int type) {
 		id=idCounter++;
 		this.reservedDays=reservedDays;

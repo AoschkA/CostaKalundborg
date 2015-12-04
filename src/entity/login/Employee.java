@@ -3,7 +3,7 @@ package entity.login;
 public class Employee {
 	private boolean active,admin;
 	private String username,password;
-	
+
 	public Employee(boolean active, boolean admin, String username, String password){
 		this.active = active;
 		this.admin = admin;
@@ -42,7 +42,7 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+
 
 }
