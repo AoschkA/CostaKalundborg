@@ -85,7 +85,6 @@ public class TUI {
 		System.out.println("#######################################");
 		System.out.println("Tjek Ud");
 		System.out.println("1. Indtast reservations id");
-		System.out.println("2. Sog reservation paa kundes telefonnummer");
 		System.out.println("");
 		System.out.println("3. Tilbage til hovedmenu");
 		System.out.println("#######################################");

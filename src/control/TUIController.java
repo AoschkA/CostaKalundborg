@@ -218,12 +218,12 @@ public class TUIController {
 				case "1" : 
 					System.out.println("Indtast reservations ID:");
 					resID = getStringInput();
-					// Metode til at rykke reservation
+					changeReservationInner(resID);
 					break;
 				case "2" :
 					System.out.println("Indtast telefonnummer:");
 					phoneNr = getStringInput();
-					// Metode til at finde ID ud fra tlfnr
+					System.out.println("Navn: "+mainController.userExist(phoneNr));
 					break;
 				case "3" :
 					break whileLoop;
@@ -235,35 +235,17 @@ public class TUIController {
 	public void changeReservationInner(String resID){
 		TUI.reservationID();
 		System.out.println("Ændrer for: " + resID);
-		String fromdate = null;
-		String todate = null;
+		String newDepartureDate;
 
-		whileLoop:
-			while(fromdate == null && todate == null){
-				String input = getStringInput();
-				switch(input){
-				case "1" : 
-					System.out.println("Fra dato:");
-					fromdate = getStringInput();
-					// Metode til slet
-					break;
-				case "2" :
-					System.out.println("Til dato:");
-					todate = getStringInput();
-					// Metode til at finde ID ud fra tlfnr
-					break;
-				case "3" : 
-					break whileLoop;
-				default : System.out.println("Forkert tal."); break;
-				}
-			}
-		if(fromdate != null  && todate == null){
-			//Gem ny dato for reservationsID.
-		}
+		System.out.println("Indtast ny afrejsedato");
+		newDepartureDate = getStringInput();
+		String oldDepartureDate = mainController.findReservation(Integer.parseInt(resID)).getDepartureDate();
+		mainController.changeReservation(Integer.parseInt(resID), newDepartureDate);
+		System.out.println("Reservations dato ændret fra dato "+oldDepartureDate+"\n, til dato "+newDepartureDate);
 	}
 
 	public void checkIn(){
-		TUI.deleteReservation();
+		TUI.checkIn();
 		String resID = null;
 		String phoneNr = null;
 
@@ -274,12 +256,12 @@ public class TUIController {
 				case "1" : 
 					System.out.println("Indtast reservations ID:");
 					resID = getStringInput();
-					// Metode til indtjekning ud fra reservations ID
+					mainController.checkIn(Integer.parseInt(resID));
 					break;
 				case "2" :
 					System.out.println("Indtast telefonnummer:");
 					phoneNr = getStringInput();
-					// Metode til at finde ID ud fra tlfnr
+					System.out.println("Navn: "+mainController.userExist(phoneNr));
 					break;
 				case "3" :
 					break whileLoop;
@@ -289,7 +271,7 @@ public class TUIController {
 	}
 
 	public void checkOut(){
-		TUI.deleteReservation();
+		TUI.checkOut();
 		String resID = null;
 		String phoneNr = null;
 
@@ -298,14 +280,9 @@ public class TUIController {
 				String input = getStringInput();
 				switch(input){
 				case "1" : 
-					System.out.println("Indtast reservations ID:");
-					resID = getStringInput();
-					// Metode til udtjekning ud fra reservations ID
-					break;
-				case "2" :
 					System.out.println("Indtast telefonnummer:");
 					phoneNr = getStringInput();
-					// Metode til at finde ID ud fra tlfnr
+					mainController.checkOut(phoneNr);
 					break;
 				case "3" :
 					break whileLoop;
